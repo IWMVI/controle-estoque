@@ -1,0 +1,314 @@
+/* Reset básico de margin e padding */
+* {
+    margin: 0; /* Remove qualquer margem padrão em todos os elementos */
+    padding: 0; /* Remove qualquer padding padrão em todos os elementos */
+    box-sizing: border-box; /* Garante que a largura e altura de um elemento incluam padding e borda */
+}
+
+body {
+    font-family: "Roboto", sans-serif; /* Define a fonte para o corpo da página */
+    background-color: #f9fafb; /* Cor de fundo clara */
+    color: #333; /* Cor do texto */
+    line-height: 1.6; /* Aumenta a altura da linha para melhorar a legibilidade */
+}
+
+/* Estilo do Cabeçalho */
+header {
+    text-align: center; /* Centraliza o conteúdo do cabeçalho */
+    margin-bottom: 40px; /* Espaço abaixo do cabeçalho */
+}
+
+h1 {
+    font-size: 3rem; /* Tamanho grande para o título */
+    color: #4caf50; /* Cor verde para o título */
+    font-weight: 600; /* Define o peso da fonte para o título */
+}
+
+p {
+    font-size: 1.1rem; /* Tamanho de fonte um pouco maior que o normal */
+    color: #666; /* Cor do texto em cinza */
+    margin-top: 10px; /* Espaço acima do parágrafo */
+}
+
+/* Estilo da tela principal (Index com Cards) */
+.main-content {
+    display: flex; /* Usado para alinhamento flexível */
+    flex-wrap: wrap; /* Permite que os itens se ajustem quando a tela for pequena */
+    justify-content: space-around; /* Espalha os itens uniformemente com espaço ao redor */
+    gap: 20px; /* Espaço entre os itens */
+    padding: 20px; /* Espaço interno da área principal */
+}
+
+.card {
+    background-color: #ffffff; /* Cor de fundo branca para o card */
+    border: 1px solid #e0e0e0; /* Borda cinza clara */
+    border-radius: 10px; /* Bordas arredondadas */
+    width: 250px; /* Largura fixa do card */
+    padding: 20px; /* Espaço interno dentro do card */
+    text-align: center; /* Alinha o conteúdo no centro */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para o card */
+    transition: transform 0.3s, box-shadow 0.3s; /* Suaviza a transição ao passar o mouse */
+}
+
+.card:hover {
+    transform: translateY(
+        -5px
+    ); /* Eleva o card quando o mouse passa sobre ele */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Aumenta a sombra ao passar o mouse */
+}
+
+.card-link {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: #333; /* Define a cor do texto do link */
+}
+
+.icon {
+    font-size: 3rem; /* Aumenta o tamanho do ícone */
+    color: #4caf50; /* Define a cor verde para o ícone */
+    margin-bottom: 15px; /* Espaço abaixo do ícone */
+}
+
+h2 {
+    font-size: 1.6rem; /* Tamanho de fonte para subtítulos */
+    font-weight: 500; /* Define um peso médio para o subtítulo */
+    color: #333; /* Cor do texto */
+}
+
+p {
+    font-size: 1rem; /* Tamanho padrão para parágrafos */
+    color: #777; /* Cor cinza mais clara para o texto */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Organiza os itens em coluna para telas pequenas */
+        align-items: center; /* Centraliza os itens na coluna */
+    }
+}
+
+/* Estilo dos Botões */
+.button-back,
+.button,
+#search-form button {
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: #4caf50; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    font-size: 1.1rem; /* Tamanho do texto do botão */
+    text-decoration: none; /* Remove sublinhado dos links */
+    border-radius: 6px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease; /* Suaviza a transição de cor ao passar o mouse */
+    margin-top: 15px; /* Espaço acima dos botões */
+}
+
+.button-back i,
+.button i {
+    margin-right: 8px; /* Espaço à direita do ícone no botão */
+}
+
+.button-back:hover,
+.button:hover {
+    background-color: #45a049; /* Cor mais escura para o botão ao passar o mouse */
+}
+
+#search-form {
+    display: none; /* Esconde o formulário de busca inicialmente */
+    justify-content: center; /* Centraliza o conteúdo do formulário */
+    margin-top: 20px; /* Espaço acima do formulário */
+    margin-bottom: 30px; /* Espaço abaixo do formulário */
+    text-align: center; /* Centraliza o conteúdo dentro do formulário */
+}
+
+#search-form input[type="text"] {
+    padding: 10px 15px; /* Espaçamento interno do campo de texto */
+    border: 1px solid #ddd; /* Borda do campo de texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 1rem; /* Tamanho da fonte do campo de texto */
+    width: 50%; /* Largura do campo de texto */
+    outline: none; /* Remove a borda de foco padrão */
+}
+
+#search-form input[type="text"]:focus {
+    border-color: #4caf50; /* Muda a cor da borda para verde ao focar no campo */
+}
+
+#search-form button {
+    padding: 10px 20px; /* Espaçamento interno do botão de busca */
+    background-color: #4caf50; /* Cor de fundo verde */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 1rem; /* Tamanho do texto do botão */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    margin-left: 10px; /* Espaço à esquerda do botão */
+}
+
+#search-form button i {
+    margin-right: 5px; /* Espaço à direita do ícone no botão */
+}
+
+/* Tabela de Produtos */
+.produto-table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Remove o espaçamento entre as células */
+    margin-top: 30px; /* Espaço acima da tabela */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para a tabela */
+}
+
+.produto-table th,
+.produto-table td {
+    padding: 12px 15px; /* Espaçamento interno das células */
+    text-align: left; /* Alinha o texto à esquerda */
+    border: 1px solid #ddd; /* Borda das células */
+    font-size: 1rem; /* Tamanho da fonte dentro da tabela */
+}
+
+.produto-table th {
+    background-color: #4caf50; /* Cor de fundo verde para o cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+    letter-spacing: 0.05rem; /* Adiciona um pequeno espaçamento entre as letras */
+}
+
+.produto-table tr:nth-child(even) {
+    background-color: #f7f7f7; /* Cor alternada para as linhas da tabela */
+}
+
+.produto-table tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse sobre a linha */
+}
+
+.produto-table td {
+    color: #333; /* Cor do texto nas células */
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 8px 15px; /* Espaçamento interno dos botões */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Indica que o botão é clicável */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave para efeitos ao passar o mouse */
+    margin-right: 10px; /* Espaço à direita entre os botões */
+    display: inline-flex; /* Exibe os botões em linha com o ícone */
+    align-items: center; /* Alinha os itens dentro do botão */
+    justify-content: center; /* Centraliza o conteúdo dentro do botão */
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.edit-btn {
+    background-color: #ff9800; /* Cor de fundo laranja para o botão de editar */
+    color: white; /* Cor do texto do botão */
+}
+
+.edit-btn:hover {
+    background-color: #fb8c00; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+}
+
+.delete-btn {
+    background-color: #f44336; /* Cor de fundo vermelha para o botão de excluir */
+    color: white; /* Cor do texto do botão */
+}
+
+.delete-btn:hover {
+    background-color: #e53935; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+}
+
+.edit-btn i,
+.delete-btn i {
+    margin-right: 5px; /* Espaço à direita do ícone nos botões */
+}
+
+/* Modal de Edição */
+#edit-modal {
+    display: none; /* Esconde o modal inicialmente */
+    position: fixed; /* Fixa o modal na tela */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Largura total da tela */
+    height: 100%; /* Altura total da tela */
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.7
+    ); /* Fundo escuro translúcido para o modal */
+    justify-content: center; /* Centraliza o conteúdo do modal */
+    align-items: center; /* Centraliza verticalmente o conteúdo do modal */
+}
+
+.modal-content {
+    background-color: white; /* Cor de fundo do conteúdo do modal */
+    padding: 30px; /* Espaço interno do modal */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 400px; /* Largura fixa do modal */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do modal */
+}
+
+.modal-content h2 {
+    font-size: 1.8rem; /* Tamanho do título dentro do modal */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.modal-content label {
+    display: block; /* Exibe o rótulo como um bloco */
+    margin-bottom: 8px; /* Espaço abaixo do rótulo */
+    font-weight: bold; /* Deixa o rótulo em negrito */
+}
+
+.modal-content input {
+    width: 100%; /* Largura total do campo de entrada */
+    padding: 12px; /* Espaço interno */
+    margin-bottom: 20px; /* Espaço abaixo do campo */
+    border: 1px solid #ddd; /* Borda cinza para o campo */
+    border-radius: 6px; /* Bordas arredondadas */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+.modal-content button {
+    padding: 10px 20px; /* Espaçamento interno do botão dentro do modal */
+    background-color: #4caf50; /* Cor de fundo verde */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 6px; /* Bordas arredondadas */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+}
+
+.close-btn {
+    position: absolute; /* Posiciona o botão de fechar de forma absoluta */
+    top: 10px; /* Alinha o botão no topo */
+    right: 20px; /* Alinha o botão à direita */
+    font-size: 2rem; /* Tamanho do ícone de fechar */
+    cursor: pointer; /* Indica que o ícone é clicável */
+}
+
+/* Estilo das Ações (botões de Adicionar e Buscar Produto) */
+.actions {
+    display: flex; /* Usar flexbox para alinhamento */
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    gap: 20px; /* Adiciona um espaço entre os botões */
+    margin-bottom: 20px; /* Espaço abaixo dos botões */
+}
+
+.actions .button {
+    display: inline-flex; /* Para os botões ficarem na mesma linha */
+    align-items: center; /* Centraliza o conteúdo dentro do botão */
+    padding: 12px 20px; /* Aumenta o tamanho do botão */
+    background-color: #4caf50; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    font-size: 1.1rem; /* Tamanho do texto */
+    border-radius: 6px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: background-color 0.3s ease; /* Efeito de transição */
+}
+
+.actions .button:hover {
+    background-color: #45a049; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+.actions .button i {
+    margin-right: 8px; /* Espaço à direita do ícone no botão */
+}

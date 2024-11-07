@@ -4,264 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Página de Produtos</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family: "Roboto", sans-serif;
-                background-color: #f9fafb;
-                color: #333;
-                line-height: 1.6;
-            }
-
-            header {
-                background-color: #4caf50;
-                color: white;
-                padding: 20px 0;
-                text-align: center;
-                margin-bottom: 40px;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
-                font-weight: 600;
-            }
-
-            .button-back {
-                display: inline-flex;
-                align-items: center;
-                padding: 10px 20px;
-                background-color: #ffffff;
-                color: #4caf50;
-                font-size: 1.1rem;
-                text-decoration: none;
-                border-radius: 6px;
-                transition: background-color 0.3s ease;
-                margin-top: 15px;
-            }
-
-            .button-back i {
-                margin-right: 8px;
-            }
-
-            .button-back:hover {
-                background-color: #f1f1f1;
-            }
-
-            .actions {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .actions .button {
-                padding: 12px 25px;
-                background-color: #4caf50;
-                color: white;
-                text-decoration: none;
-                font-size: 1.1rem;
-                border-radius: 6px;
-                transition: background-color 0.3s ease;
-                margin: 0 5px;
-                display: inline-flex;
-                align-items: center;
-            }
-
-            .actions .button i {
-                margin-right: 8px;
-            }
-
-            .actions .button:hover {
-                background-color: #45a049;
-            }
-
-            /* Tabela de Produtos */
-            .produto-table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 30px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-
-            .produto-table th,
-            .produto-table td {
-                padding: 12px 15px;
-                text-align: left;
-                border: 1px solid #ddd;
-                font-size: 1rem;
-            }
-
-            .produto-table th {
-                background-color: #4caf50;
-                color: white;
-                text-transform: uppercase;
-                letter-spacing: 0.05rem;
-            }
-
-            .produto-table tr:nth-child(even) {
-                background-color: #f7f7f7;
-            }
-
-            .produto-table tr:hover {
-                background-color: #f1f1f1;
-            }
-
-            .produto-table td {
-                color: #333;
-            }
-
-            /* Estilo para os botões de editar e excluir */
-            .edit-btn,
-            .delete-btn {
-                padding: 8px 15px;
-                font-size: 1rem;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease, transform 0.2s ease;
-                margin-right: 10px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                text-decoration: none;
-            }
-
-            .edit-btn {
-                background-color: #ff9800;
-                color: white;
-            }
-
-            .edit-btn:hover {
-                background-color: #fb8c00;
-                transform: scale(1.05);
-            }
-
-            .delete-btn {
-                background-color: #f44336;
-                color: white;
-            }
-
-            .delete-btn:hover {
-                background-color: #e53935;
-                transform: scale(1.05);
-            }
-
-            .edit-btn i,
-            .delete-btn i {
-                margin-right: 5px;
-            }
-
-            /* Estilo do Modal de Edição */
-            #edit-modal {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.7);
-                justify-content: center;
-                align-items: center;
-            }
-
-            .modal-content {
-                background-color: white;
-                padding: 30px;
-                border-radius: 8px;
-                width: 400px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .modal-content h2 {
-                font-size: 1.8rem;
-                margin-bottom: 20px;
-            }
-
-            .modal-content label {
-                display: block;
-                margin-bottom: 8px;
-                font-weight: bold;
-            }
-
-            .modal-content input,
-            .modal-content select {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                font-size: 1rem;
-            }
-
-            .modal-content button {
-                padding: 10px 20px;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 1.1rem;
-                transition: background-color 0.3s ease;
-            }
-
-            .modal-content button:hover {
-                background-color: #45a049;
-            }
-
-            .modal-content .close-btn {
-                position: absolute;
-                top: 10px;
-                right: 20px;
-                font-size: 1.5rem;
-                color: #888;
-                cursor: pointer;
-            }
-
-            /* Estilo da barra de pesquisa (centralizada) */
-            #search-form {
-                display: none;
-                justify-content: center;
-                margin-top: 20px;
-                margin-bottom: 30px;
-                text-align: center;
-            }
-
-            #search-form input[type="text"] {
-                padding: 10px 15px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                font-size: 1rem;
-                width: 50%;
-                outline: none;
-            }
-
-            #search-form input[type="text"]:focus {
-                border-color: #4caf50;
-            }
-
-            #search-form button {
-                padding: 10px 20px;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 1rem;
-                cursor: pointer;
-                margin-left: 10px;
-            }
-
-            #search-form button i {
-                margin-right: 5px;
-            }
-        </style>
+        <link rel="stylesheet" href="/styles/styles.css" />
+        <script src="scripts.js" defer></script>
     </head>
 
     <body>
@@ -273,13 +17,12 @@
         </header>
 
         <div class="actions">
-            <a
-                href="/produtos/adicionar-produto"
-                class="button"
-                id="add-product-btn"
-            >
+            <!-- Botão de Adicionar Produto -->
+            <a href="/produtos/adicionar-produto" class="button">
                 <i class="fas fa-plus-circle"></i> Adicionar Produto
             </a>
+
+            <!-- Botão de Buscar Produto -->
             <a href="#" class="button" id="search-product-btn">
                 <i class="fas fa-search"></i> Buscar Produto
             </a>
@@ -308,6 +51,7 @@
                     </tr>
                 </thead>
                 <tbody id="produto-list">
+                    <!-- Aqui você está iterando sobre os produtos com o Thymeleaf -->
                     <tr th:each="produto : ${produtos}">
                         <td th:text="${produto.nome}"></td>
                         <td th:text="${produto.categoria}"></td>
@@ -334,78 +78,15 @@
                 <span class="close-btn" id="close-modal">&times;</span>
                 <h2>Editar Produto</h2>
                 <form id="edit-form">
-                    <label for="edit-nome">Nome:</label>
-                    <input type="text" id="edit-nome" name="nome" required />
-
-                    <label for="edit-categoria">Categoria:</label>
-                    <input
-                        type="text"
-                        id="edit-categoria"
-                        name="categoria"
-                        required
-                    />
-
-                    <label for="edit-preco">Preço:</label>
-                    <input
-                        type="number"
-                        id="edit-preco"
-                        name="preco"
-                        required
-                    />
-
-                    <button type="submit">Salvar Alterações</button>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" />
+                    <label for="categoria">Categoria</label>
+                    <input type="text" id="categoria" name="categoria" />
+                    <label for="preco">Preço</label>
+                    <input type="text" id="preco" name="preco" />
+                    <button type="submit">Salvar alterações</button>
                 </form>
             </div>
         </div>
-
-        <script>
-            // Exibir a barra de pesquisa ao clicar no botão "Buscar Produto"
-            $("#search-product-btn").click(function () {
-                $("#search-form").toggle();
-            });
-
-            // Abrir o modal para editar o produto
-            $(".edit-btn").click(function () {
-                var productId = $(this).data("id");
-
-                $.ajax({
-                    url: "/produtos/" + productId + "/detalhes",
-                    method: "GET",
-                    success: function (produto) {
-                        $("#edit-nome").val(produto.nome);
-                        $("#edit-categoria").val(produto.categoria);
-                        $("#edit-preco").val(produto.preco);
-                        $("#edit-modal").fadeIn();
-                    },
-                });
-            });
-
-            // Fechar o modal
-            $("#close-modal").click(function () {
-                $("#edit-modal").fadeOut();
-            });
-
-            // Submeter as alterações do formulário de edição
-            $("#edit-form").submit(function (e) {
-                e.preventDefault();
-
-                var productId = $(".edit-btn").data("id");
-                var data = $(this).serialize();
-
-                $.ajax({
-                    url: "/produtos/" + productId + "/editar",
-                    method: "POST",
-                    data: data,
-                    success: function (response) {
-                        alert("Produto atualizado com sucesso!");
-                        $("#edit-modal").fadeOut();
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("Erro ao editar o produto.");
-                    },
-                });
-            });
-        </script>
     </body>
 </html>

@@ -4,127 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Adicionar Produto</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
+        <link rel="stylesheet" href="/styles/styles.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <style>
-            /* Reset básico e estilo do corpo */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family: "Roboto", sans-serif;
-                background-color: #f0f2f5;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                padding: 20px;
-                color: #333;
-            }
-
-            /* Header */
-            header {
-                text-align: center;
-                margin-bottom: 30px;
-            }
-
-            header h1 {
-                font-size: 2.8rem;
-                color: #4caf50;
-                font-weight: bold;
-                margin-bottom: 15px;
-            }
-
-            .button-back {
-                padding: 10px 20px;
-                background-color: #4caf50;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                font-size: 1.1rem;
-                display: inline-block;
-                transition: background-color 0.3s;
-            }
-
-            .button-back:hover {
-                background-color: #43a047;
-            }
-
-            /* Formulário */
-            .form-container {
-                width: 100%;
-                max-width: 450px;
-                background-color: #fff;
-                padding: 30px;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-
-            .form-container label {
-                font-weight: 600;
-                margin-bottom: 8px;
-                color: #555;
-            }
-
-            .form-group {
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
-                position: relative;
-            }
-
-            .form-group i {
-                color: #999;
-                margin-right: 10px;
-                font-size: 1.1rem;
-            }
-
-            .form-group input {
-                width: 100%;
-                padding: 12px 15px 12px 40px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                font-size: 1rem;
-                background-color: #f9fafb;
-                color: #333;
-            }
-
-            .form-group input:focus {
-                border-color: #4caf50;
-                outline: none;
-                background-color: #fff;
-            }
-
-            .form-container button {
-                width: 100%;
-                padding: 12px;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 1.2rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-            .form-container button:hover {
-                background-color: #43a047;
-            }
-
-            /* Estilo para dispositivos menores */
-            @media (max-width: 600px) {
-                header h1 {
-                    font-size: 2rem;
-                }
-            }
-        </style>
+        <script src="/js/adicionar-produto.js" defer></script>
     </head>
     <body>
         <div>
@@ -174,26 +56,5 @@
                 </form>
             </div>
         </div>
-
-        <script>
-            // Função para adicionar um produto via AJAX
-            $("#produtoForm").submit(function (e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-
-                $.ajax({
-                    type: "POST",
-                    url: "/adicionar-produto",
-                    data: formData,
-                    success: function (response) {
-                        alert("Produto adicionado com sucesso!");
-                        window.location.href = "/"; // Redireciona para a página inicial
-                    },
-                    error: function () {
-                        alert("Ocorreu um erro ao adicionar o produto.");
-                    },
-                });
-            });
-        </script>
     </body>
 </html>
