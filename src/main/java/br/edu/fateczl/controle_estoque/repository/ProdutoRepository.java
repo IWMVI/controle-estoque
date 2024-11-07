@@ -7,5 +7,4 @@ import br.edu.fateczl.controle_estoque.model.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-
 }

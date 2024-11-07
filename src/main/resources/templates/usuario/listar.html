@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Usuários</title>
+        <style>
+            /* Estilos gerais */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f7f7f7;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+
+            .container {
+                width: 80%;
+                max-width: 800px;
+                text-align: center;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1,
+            h2 {
+                color: #333;
+                margin: 20px 0;
+            }
+
+            /* Tabela de usuários */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            th,
+            td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #4caf50;
+                color: white;
+            }
+
+            tr:hover {
+                background-color: #f2f2f2;
+            }
+
+            /* Botões de ação */
+            .action-buttons {
+                display: flex;
+                gap: 5px;
+                justify-content: center;
+            }
+
+            .action-buttons button {
+                padding: 6px 10px;
+                border: none;
+                border-radius: 5px;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-detalhes {
+                background-color: #007bff;
+            }
+
+            .btn-editar {
+                background-color: #ffc107;
+            }
+
+            .btn-excluir {
+                background-color: #dc3545;
+            }
+
+            .btn-detalhes:hover {
+                background-color: #0056b3;
+            }
+
+            .btn-editar:hover {
+                background-color: #e0a800;
+            }
+
+            .btn-excluir:hover {
+                background-color: #c82333;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Lista de Usuários</h1>
+
+            <!-- Tabela de usuários -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Permissão</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nome}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.permissao}"></td>
+                        <td class="action-buttons">
+                            <!-- Botão para exibir detalhes do usuário -->
+                            <form
+                                th:action="@{/usuarios/detalhes/{id}(id=${usuario.id})}"
+                                method="get"
+                            >
+                                <button class="btn-detalhes" type="submit">
+                                    Detalhes
+                                </button>
+                            </form>
+
+                            <!-- Formulário para editar o usuário -->
+                            <form
+                                th:action="@{/usuarios/editar/{id}(id=${usuario.id})}"
+                                method="get"
+                            >
+                                <button class="btn-editar" type="submit">
+                                    Editar
+                                </button>
+                            </form>
+
+                            <!-- Formulário para excluir o usuário -->
+                            <form
+                                th:action="@{/usuarios/deletar/{id}(id=${usuario.id})}"
+                                method="post"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="_method"
+                                    value="delete"
+                                />
+                                <button
+                                    class="btn-excluir"
+                                    type="submit"
+                                    onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
+                                >
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

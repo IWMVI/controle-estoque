@@ -1,12 +1,11 @@
 package br.edu.fateczl.controle_estoque.model;
 
-import java.util.Map;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapKey;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,25 +17,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Estoque {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    @MapKey(name = "id")
-    private Map<Long, Produto> produtos;
+    private String nome;
+    private String descricao;
 
-    public void adicionarProduto(Produto produto) {
-        produtos.put(produto.getId(), produto);
-    }
-
-    public void removerProduto(Produto produto) {
-        produtos.remove(produto.getId());
-    }
-
-    public Produto buscarProduto(Long id) {
-        return produtos.get(id);
-    }
+    @OneToMany(mappedBy = "categoria")
+    private List<Produto> produtos;
 }

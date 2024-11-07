@@ -1,13 +1,15 @@
 package br.edu.fateczl.controle_estoque.model;
 
-import jakarta.persistence.Column;
+import java.util.Date;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,17 +20,27 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "relatorio")
-public class Relatorio {
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "descricao", nullable = false)
-    private String descricao;
+    private Date dataPedido;
 
     @ManyToOne
-    @JoinColumn(name = "venda_id", nullable = false)
-    private Venda venda;
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    @OneToMany
+    @JoinColumn(name = "pedido_id")
+    private List<ItemPedido> itens;
+
+    public double calcularTotal() {
+        return itens.stream().mapToDouble(ItemPedido::calcularSubtotal).sum();
+    }
+
+    public void adicionarItem(ItemPedido item) {
+        itens.add(item);
+    }
 }

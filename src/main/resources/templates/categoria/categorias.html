@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Página de Categorias</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            /* Estilos gerais para a página */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Roboto", sans-serif;
+                background-color: #f9fafb;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            /* Estilo do cabeçalho */
+            header {
+                background-color: #4caf50; /* Cor de fundo verde */
+                color: white; /* Texto branco */
+                padding: 20px 0; /* Espaçamento interno */
+                text-align: center; /* Alinhar texto ao centro */
+                margin-bottom: 40px; /* Margem inferior */
+            }
+
+            header h1 {
+                font-size: 2.5rem; /* Tamanho da fonte */
+                font-weight: 600; /* Peso da fonte */
+            }
+
+            .button-back {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                background-color: #ffffff;
+                color: #4caf50;
+                font-size: 1.1rem;
+                text-decoration: none;
+                border-radius: 6px;
+                transition: background-color 0.3s ease;
+                margin-top: 15px;
+            }
+
+            .button-back i {
+                margin-right: 8px;
+            }
+
+            .button-back:hover {
+                background-color: #f1f1f1;
+            }
+
+            /* Ações do usuário (botões) */
+            .actions {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .actions .button {
+                padding: 12px 25px;
+                background-color: #4caf50;
+                color: white;
+                text-decoration: none;
+                font-size: 1.1rem;
+                border-radius: 6px;
+                transition: background-color 0.3s ease;
+                margin: 0 5px;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .actions .button i {
+                margin-right: 8px;
+            }
+
+            .actions .button:hover {
+                background-color: #45a049;
+            }
+
+            /* Estilos para a tabela de categorias */
+            .produto-table {
+                width: 90%;
+                margin: 0 auto;
+                border-collapse: collapse;
+                margin-top: 30px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .produto-table th,
+            .produto-table td {
+                padding: 12px 20px;
+                text-align: left;
+                border: 1px solid #ddd;
+                font-size: 1.1rem;
+            }
+
+            .produto-table th {
+                background-color: #4caf50;
+                color: white;
+                text-transform: uppercase;
+                letter-spacing: 0.05rem;
+            }
+
+            .produto-table tr:nth-child(even) {
+                background-color: #f7f7f7;
+            }
+
+            .produto-table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .produto-table td {
+                color: #333;
+            }
+
+            /* Estilo do Modal */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            .modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 20px;
+                border-radius: 6px;
+                width: 80%;
+                max-width: 500px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .modal-close {
+                color: #aaa;
+                float: right;
+                font-size: 1.4rem;
+                font-weight: bold;
+            }
+
+            .modal-close:hover,
+            .modal-close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            /* Estilo para os inputs do formulário */
+            .modal-content input {
+                padding: 12px;
+                margin: 10px 0;
+                font-size: 1rem;
+                width: 100%;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+            }
+
+            .modal-content input:focus {
+                border-color: #4caf50;
+                outline: none;
+            }
+
+            .modal-content button {
+                padding: 12px 25px;
+                background-color: #4caf50;
+                color: white;
+                font-size: 1.1rem;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                width: 100%;
+            }
+
+            .modal-content button:hover {
+                background-color: #45a049;
+            }
+
+            /* Estilo dos botões de editar e excluir */
+            .button-edit {
+                padding: 10px 20px;
+                background-color: #ff9800;
+                color: white;
+                border-radius: 6px;
+                font-size: 1rem;
+                transition: background-color 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                border: none;
+                margin-right: 10px;
+            }
+
+            .button-edit i {
+                margin-right: 6px;
+            }
+
+            .button-edit:hover {
+                background-color: #e68900;
+            }
+
+            .button-delete {
+                padding: 10px 20px;
+                background-color: #f44336;
+                color: white;
+                border-radius: 6px;
+                font-size: 1rem;
+                transition: background-color 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                border: none;
+            }
+
+            .button-delete i {
+                margin-right: 6px;
+            }
+
+            .button-delete:hover {
+                background-color: #d32f2f;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Página de Categorias</h1>
+            <a href="/" class="button-back">
+                <i class="fas fa-arrow-left"></i> Voltar ao Início
+            </a>
+        </header>
+
+        <div class="actions">
+            <a
+                href="javascript:void(0)"
+                class="button"
+                onclick="showAddModal()"
+            >
+                <i class="fas fa-plus-circle"></i> Adicionar Categoria
+            </a>
+        </div>
+
+        <div class="container">
+            <table class="produto-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="categoria-list">
+                    <!-- Iterando sobre as categorias passadas pelo controller -->
+                    <tr th:each="categoria : ${categorias}">
+                        <td th:text="${categoria.nome}">Nome da Categoria</td>
+                        <td th:text="${categoria.descricao}">
+                            Descrição da Categoria
+                        </td>
+                        <td>
+                            <button
+                                class="button-edit"
+                                th:onclick="'editCategory(' + ${categoria.id} + ')'"
+                            >
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button
+                                class="button-delete"
+                                th:onclick="'deleteCategory(' + ${categoria.id} + ')'"
+                            >
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal para Editar Categoria -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeEditModal()">×</span>
+                <h2>Editar Categoria</h2>
+                <input
+                    type="text"
+                    id="edit-name"
+                    placeholder="Nome da Categoria"
+                />
+                <input
+                    type="text"
+                    id="edit-description"
+                    placeholder="Descrição da Categoria"
+                />
+                <button onclick="saveCategory()">Salvar</button>
+            </div>
+        </div>
+
+        <!-- Modal para Adicionar Categoria -->
+        <div id="add-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeAddModal()">×</span>
+                <h2>Adicionar Categoria</h2>
+                <input
+                    type="text"
+                    id="add-name"
+                    placeholder="Nome da Categoria"
+                />
+                <input
+                    type="text"
+                    id="add-description"
+                    placeholder="Descrição da Categoria"
+                />
+                <button onclick="addCategory()">Adicionar</button>
+            </div>
+        </div>
+
+        <script>
+            function showAddModal() {
+                document.getElementById("add-modal").style.display = "block";
+            }
+
+            function closeAddModal() {
+                document.getElementById("add-modal").style.display = "none";
+            }
+
+            function showEditModal(id) {
+                document.getElementById("edit-modal").style.display = "block";
+                // Aqui você pode carregar os dados da categoria para edição
+            }
+
+            function closeEditModal() {
+                document.getElementById("edit-modal").style.display = "none";
+            }
+
+            function addCategory() {
+                // Função para adicionar categoria
+            }
+
+            function saveCategory() {
+                // Função para salvar categoria editada
+            }
+
+            function deleteCategory(id) {
+                // Função para excluir categoria
+            }
+        </script>
+    </body>
+</html>

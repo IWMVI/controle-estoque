@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    mysql:
+        image: mysql:8.0
+        container_name: trabalho-lab-bd
+        environment:
+            MYSQL_ROOT_PASSWORD: P4ssw0rd # Senha do root do MySQL
+            MYSQL_DATABASE: controle-estoque # Nome do banco de dados a ser criado
+        ports:
+            - "3307:3306" # Mapeando a porta 3307 do host para 3306 do container
+        volumes:
+            - mysql-data:/var/lib/mysql # Persistência de dados
+        networks:
+            - mysql-network
+
+volumes:
+    mysql-data:
+        driver: local
+
+networks:
+    mysql-network:
+        driver: bridge
