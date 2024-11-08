@@ -1,17 +1,14 @@
 package br.edu.fateczl.controle_estoque.controller;
 
-import br.edu.fateczl.controle_estoque.service.CategoriaService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import br.edu.fateczl.controle_estoque.dto.CategoriaDto;
 import br.edu.fateczl.controle_estoque.model.Categoria;
 import br.edu.fateczl.controle_estoque.repository.CategoriaRepository;
+import br.edu.fateczl.controle_estoque.service.CategoriaService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -35,13 +32,17 @@ public class CategoriaController {
 
     // Método para adicionar categoria
     @PostMapping("/adicionar")
-    public String adicionarCategoria(@RequestParam("nome") String nome, @RequestParam("descricao") String descricao) {
+    public String adicionarCategoria(@ModelAttribute @Valid CategoriaDto categoriaDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "categoria/adicionar";
+        }
+
         Categoria categoria = new Categoria();
-        categoria.setNome(nome);
-        categoria.setDescricao(descricao);
+
+        categoria.setNome(categoriaDto.getNome());
+        categoria.setDescricao(categoriaDto.getDescricao());
 
         categoriaService.salvarCategoria(categoria);
-
         return "redirect:/categorias";
     }
 
