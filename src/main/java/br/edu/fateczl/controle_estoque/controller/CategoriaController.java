@@ -1,5 +1,6 @@
 package br.edu.fateczl.controle_estoque.controller;
 
+import br.edu.fateczl.controle_estoque.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,21 +12,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.edu.fateczl.controle_estoque.model.Categoria;
 import br.edu.fateczl.controle_estoque.repository.CategoriaRepository;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    CategoriaService categoriaService;
+    CategoriaRepository categoriaRepository; //TODO: Remover depois
+
+
+    // Método para listar todas as categorias
+    @GetMapping
+    public ModelAndView listarCategorias() {
+        ModelAndView mv = new ModelAndView("categoria/categorias");
+        Iterable<Categoria> categorias = categoriaService.todasCategorias();
+
+        mv.addObject("categorias", categorias);
+        return mv;
+    }
 
     // Método para adicionar categoria
     @PostMapping("/adicionar")
-    public String adicionarCategoria(@RequestParam String nome, @RequestParam String descricao) {
+    public String adicionarCategoria(@RequestParam("nome") String nome, @RequestParam("descricao") String descricao) {
         Categoria categoria = new Categoria();
         categoria.setNome(nome);
         categoria.setDescricao(descricao);
-        categoriaRepository.save(categoria);
+
+        categoriaService.salvarCategoria(categoria);
+
         return "redirect:/categorias";
     }
 
@@ -47,12 +63,5 @@ public class CategoriaController {
                 .orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada"));
         categoriaRepository.delete(categoria);
         return "redirect:/categorias";
-    }
-
-    // Método para listar todas as categorias
-    @GetMapping
-    public String listarCategorias(Model model) {
-        model.addAttribute("categorias", categoriaRepository.findAll());
-        return "categoria/categorias";
     }
 }

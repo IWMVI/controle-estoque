@@ -310,19 +310,14 @@
             <div class="modal-content">
                 <span class="modal-close" onclick="closeAddModal()">×</span>
                 <h2>Adicionar Categoria</h2>
-                <input
-                    type="text"
-                    id="add-name"
-                    placeholder="Nome da Categoria"
-                />
-                <input
-                    type="text"
-                    id="add-description"
-                    placeholder="Descrição da Categoria"
-                />
-                <button onclick="addCategory()">Adicionar</button>
+                <form action="/categorias/adicionar" method="POST">
+                    <input type="text" name="nome" id="add-name" placeholder="Nome da Categoria" required />
+                    <input type="text" name="descricao" id="add-description" placeholder="Descrição da Categoria" />
+                    <button type="submit">Adicionar</button>
+                </form>
             </div>
         </div>
+
 
         <script>
             function showAddModal() {
