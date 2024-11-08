@@ -1,47 +1,53 @@
 package br.edu.fateczl.controle_estoque.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Produto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
+    @Column(length = 50, nullable = false)
     private String nome;
-    private String descricao;
-    private double preco;
-    private int quantidade;
-    private boolean ativo;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
+    @Column(length = 100)
+    private String descricao;
+
+    @Column(precision = 8, scale = 2, nullable = false)
+    private BigDecimal preco;
+
+    private Boolean ativo;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDate dataCadastro;
+
+    @Column(nullable = false)
+    private LocalDate dataAlteracao;
+
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "categoria_id", nullable = false)
     private Categoria categoria;
 
-    private Date dataCadastro;
-    private Date dataAlteracao;
 
-    public void atualizarPreco(double preco) {
-        this.preco = preco;
+    @PrePersist
+    public void adicionarDataProduto() {
+        this.dataCadastro = LocalDate.now();
+        this.dataAlteracao = LocalDate.now();
     }
 
-    public void atualizarQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    @PreUpdate
+    public void alterarDataProduto() {
+        this.dataAlteracao = LocalDate.now();
     }
 }

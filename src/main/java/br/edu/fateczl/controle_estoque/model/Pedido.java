@@ -1,46 +1,36 @@
 package br.edu.fateczl.controle_estoque.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pedido {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
-    private Date dataPedido;
+    @Column(nullable = false, updatable = false)
+    private LocalDate dataPedido;
 
-    @ManyToOne
-    @JoinColumn(name = "funcionario_id")
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
 
     @OneToMany
-    @JoinColumn(name = "pedido_id")
+    @JoinColumn(name = "pedido_id", nullable = false)
     private List<ItemPedido> itens;
 
-    public double calcularTotal() {
-        return itens.stream().mapToDouble(ItemPedido::calcularSubtotal).sum();
-    }
 
-    public void adicionarItem(ItemPedido item) {
-        itens.add(item);
+    @PrePersist
+    public void adicionarPedido() {
+        this.dataPedido = LocalDate.now();
     }
 }

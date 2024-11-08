@@ -1,43 +1,29 @@
 package br.edu.fateczl.controle_estoque.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import br.edu.fateczl.controle_estoque.enums.Cargo;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Funcionario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
-    private String cargo;
-    private double salario;
+    @Enumerated(EnumType.STRING)
+    private Cargo cargo;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @Column(precision = 8, scale = 2, nullable = false)
+    private BigDecimal salario;
+
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
-
-    public void registrarEntrada() {
-        // Lógica para registrar entrada
-    }
-
-    public void registrarSaida() {
-        // Lógica para registrar saída
-    }
-
-    public void emitirPedido(Pedido pedido) {
-        // Lógica para emitir pedido
-    }
 }

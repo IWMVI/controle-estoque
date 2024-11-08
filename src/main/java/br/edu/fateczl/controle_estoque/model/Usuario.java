@@ -1,35 +1,26 @@
 package br.edu.fateczl.controle_estoque.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
+    @Column(length = 50, nullable = false)
     private String nome;
+
+    @Column(length = 50, nullable = false)
     private String email;
+
+    @Column(length = 50, nullable = false)
     private String senha;
-    private boolean ativo;
 
-    public void login() {
-        // Lógica de login
-    }
-
-    public void logout() {
-        // Lógica de logout
-    }
+    private Boolean ativo;
 }

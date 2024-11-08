@@ -1,42 +1,35 @@
 package br.edu.fateczl.controle_estoque.model;
 
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MapKey;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Estoque {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
-    @OneToMany
-    @MapKey(name = "id")
-    private Map<Long, Produto> produtos;
+    @Column(nullable = false)
+    private String localizacao;
 
-    public void adicionarProduto(Produto produto) {
-        produtos.put(produto.getId(), produto);
-    }
+    private String descricao;
 
-    public void removerProduto(Produto produto) {
-        produtos.remove(produto.getId());
-    }
+    @Column(nullable = false)
+    private LocalDate ultimaAtualizacao;
 
-    public Produto buscarProduto(Long id) {
-        return produtos.get(id);
+    @OneToMany(mappedBy = "estoque", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EstoqueProduto> produtos;  // Lista de produtos no estoque
+
+
+    @PreUpdate
+    public void atualizarDataEstoque() {
+        this.ultimaAtualizacao = LocalDate.now();
     }
 }
