@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Produtos</title>
+</head>
+<body>
+    <header>
+        <h1>Gerenciar Produtos</h1>
+        <a href="/">Voltar à Página Inicial</a>
+    </header>
+
+    <!-- Formulário para Adicionar Produto -->
+    <h2>Adicionar Novo Produto</h2>
+    <form method="post" action="/produtos/adicionar">
+        <div>
+            <label for="nome">Nome do Produto</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome do produto" required>
+        </div>
+
+        <div>
+            <label for="categoria">Categoria</label>
+            <select id="categoria" name="categoriaId" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <!-- Preencher com categorias -->
+                <th:block th:each="categoria : ${categorias}">
+                    <option th:value="${categoria.id}" th:text="${categoria.nome}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div>
+            <label for="descricao">Descrição do Produto</label>
+            <input type="text" id="descricao" name="descricao" placeholder="Descrição" required>
+        </div>
+
+        <div>
+            <label for="preco">Preço</label>
+            <input type="text" id="preco" name="preco" placeholder="Preço" required>
+        </div>
+
+        <div>
+            <label for="quantidade">Quantidade</label>
+            <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade" required>
+        </div>
+
+        <button type="submit">Salvar Produto</button>
+    </form>
+
+    <!-- Lista de Produtos -->
+    <h2>Produtos Cadastrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="produto : ${produtos}">
+                <tr>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.categoria.nome}"></td>
+                    <td th:text="${produto.descricao}"></td>
+                    <td th:text="${produto.preco}"></td>
+                    <td th:text="${produto.quantidade}"></td>
+                    <td>
+                        <!-- Editar -->
+                        <form method="post" action="/produtos/editar/${produto.id}">
+                            <input type="hidden" name="id" th:value="${produto.id}">
+                            <button type="submit">Editar</button>
+                        </form>
+                        <!-- Excluir -->
+                        <form method="post" action="/produtos/excluir/${produto.id}" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                            <input type="hidden" name="id" th:value="${produto.id}">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

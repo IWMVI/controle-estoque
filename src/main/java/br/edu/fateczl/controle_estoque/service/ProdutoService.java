@@ -1,48 +1,51 @@
 package br.edu.fateczl.controle_estoque.service;
 
-import br.edu.fateczl.controle_estoque.model.Produto;
-import br.edu.fateczl.controle_estoque.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import br.edu.fateczl.controle_estoque.model.Produto;
+import br.edu.fateczl.controle_estoque.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+	@Autowired
+	private ProdutoRepository produtoRepository;
 
-    // Listar todos os produtos
-    public List<Produto> listarProdutos() {
-        return produtoRepository.findAll();
-    }
+	public Iterable<Produto> todosProdutos() {
+		return produtoRepository.findAll();
+	}
 
-    // Obter um produto por ID
-    public Produto obterProduto(Long id) {
-        Optional<Produto> produto = produtoRepository.findById(id);
-        return produto.orElse(null); // Retorna null caso não encontre o produto
-    }
+	public void salvarProduto(Produto produto) {
+		produtoRepository.save(produto);
+	}
 
-    // Adicionar um novo produto
-    public Produto salvarProduto(Produto produto) {
-        return produtoRepository.save(produto);
-    }
+	public Produto produtoId(Long id) {
+		return produtoRepository.findById(id).orElse(null);
+	}
 
-    // Editar um produto existente
-    public Produto editarProduto(Long id, Produto produto) {
-        if (produtoRepository.existsById(id)) {
-            produto.setId(id); // Garantir que o ID do produto seja mantido
-            return produtoRepository.save(produto);
-        }
-        return null;
-    }
+	public boolean deletarProduto(Long id) {
+		Produto retorno = this.produtoId(id);
 
-    // Excluir um produto por ID
-    public void deletarProduto(Long id) {
-        if (produtoRepository.existsById(id)) {
-            produtoRepository.deleteById(id);
-        }
-    }
+		if (retorno != null) {
+			produtoRepository.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void atualizarProduto(Produto antigo, Produto novo) {
+		antigo.setNome(novo.getNome());
+		antigo.setDescricao(novo.getDescricao());
+		antigo.setPreco(novo.getPreco());
+		antigo.setQuantidade(novo.getQuantidade());
+		antigo.setCategoria(novo.getCategoria());
+
+		produtoRepository.save(antigo);
+	}
+
+	public Iterable<Produto> produtosPorCategoria(Long id) {
+		return produtoRepository.findByCategoriaId(id);
+	}
 }
