@@ -5,13 +5,15 @@ import br.edu.fateczl.controle_estoque.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaService {
+
     @Autowired
     private CategoriaRepository repository;
 
-
-    public Iterable<Categoria> todasCategorias() {
+    public List<Categoria> todasCategorias() {
         return repository.findAll();
     }
 
