@@ -30,9 +30,8 @@ public class ProdutoDto {
 
     @NotNull(message = "Quantidade não pode ser nula")
     @Min(value = 1, message = "Quantidade deve ser maior que 1")
-    private Integer quantidade;
+    private Integer quantidade = 0;  // Valor padrão para evitar null
 
     @NotNull(message = "Categoria não pode ser nula")
     private Long categoriaId;
-
 }

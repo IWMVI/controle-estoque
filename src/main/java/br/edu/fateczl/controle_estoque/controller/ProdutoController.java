@@ -1,93 +1,120 @@
 package br.edu.fateczl.controle_estoque.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import br.edu.fateczl.controle_estoque.dto.ProdutoDto;
 import br.edu.fateczl.controle_estoque.model.Categoria;
 import br.edu.fateczl.controle_estoque.model.Produto;
 import br.edu.fateczl.controle_estoque.service.CategoriaService;
 import br.edu.fateczl.controle_estoque.service.ProdutoService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-	@Autowired
-	private ProdutoService produtoService;
+    @Autowired
+    private ProdutoService produtoService;
 
-	@Autowired
-	private CategoriaService categoriaService;
+    @Autowired
+    private CategoriaService categoriaService;
 
-	@RequestMapping
-	public ModelAndView listarProdutos() {
-		ModelAndView mv = new ModelAndView("produto/produtos");
-		mv.addObject("produtos", produtoService.todosProdutos());
-		mv.addObject("categorias", categoriaService.todasCategorias());
-		return mv;
-	}
+    @GetMapping
+    public ModelAndView listarProdutos() {
+        ModelAndView mv = new ModelAndView("produto/produtos");
+        mv.addObject("produtos", produtoService.todosProdutos());
+        mv.addObject("categorias", categoriaService.todasCategorias());
+        mv.addObject("produtoDto", new ProdutoDto());
+        return mv;
+    }
 
-	@RequestMapping("/adicionar")
-	public String novoProduto(@ModelAttribute @Valid ProdutoDto produtoDto, BindingResult result) {
-		if (result.hasErrors()) {
-			return "produtos/form";
-		}
+    @PostMapping("/adicionar")
+    public String novoProduto(@ModelAttribute @Valid ProdutoDto produtoDto, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("categorias", categoriaService.todasCategorias());
+            return "produto/produtos";
+        }
 
-		Produto produto = new Produto();
-		produto.setNome(produtoDto.getNome());
-		produto.setDescricao(produtoDto.getDescricao());
-		produto.setPreco(produtoDto.getPreco());
-		produto.setQuantidade(produtoDto.getQuantidade());
+        Produto produto = new Produto();
+        produto.setNome(produtoDto.getNome());
+        produto.setDescricao(produtoDto.getDescricao());
+        produto.setPreco(produtoDto.getPreco());
+        produto.setQuantidade(produtoDto.getQuantidade());
 
-		Categoria categoria = categoriaService.categoriaId(produtoDto.getCategoriaId());
+        Categoria categoria = categoriaService.categoriaId(produtoDto.getCategoriaId());
+        if (categoria == null) {
+            throw new IllegalArgumentException("Categoria não encontrada");
+        }
 
-		if (categoria == null) {
-			throw new IllegalArgumentException("Categoria não encontrada");
-		}
+        produto.setCategoria(categoria);
+        produtoService.salvarProduto(produto);
 
-		produto.setCategoria(categoria);
+        return "redirect:/produtos";
+    }
 
-		produtoService.salvarProduto(produto);
+    @GetMapping("/editar/{id}")
+    public ModelAndView exibirFormularioEdicao(@PathVariable Long id) {
+        Produto produto = produtoService.produtoId(id);
+        List<Categoria> categorias = categoriaService.todasCategorias();
 
-		return "redirect:/produtos";
-	}
+        ProdutoDto produtoDto = new ProdutoDto();
+        produtoDto.setId(produto.getId());
+        produtoDto.setNome(produto.getNome());
+        produtoDto.setDescricao(produto.getDescricao());
+        produtoDto.setPreco(produto.getPreco());
+        produtoDto.setQuantidade(produto.getQuantidade());
+        produtoDto.setCategoriaId(produto.getCategoria().getId());
 
-	@RequestMapping("/editar/{id}")
-	public String editarProduto(@ModelAttribute ProdutoDto produtoDto, BindingResult result) {
-		if (result.hasErrors()) {
-			return "produtos/form";
-		}
+        ModelAndView mv = new ModelAndView("produto/ProdutoEditar");
+        mv.addObject("produtoDto", produtoDto);
+        mv.addObject("categorias", categorias);
+        return mv;
+    }
 
-		Produto produto = produtoService.produtoId(produtoDto.getId());
-		produto.setNome(produtoDto.getNome());
-		produto.setDescricao(produtoDto.getDescricao());
-		produto.setPreco(produtoDto.getPreco());
-		produto.setQuantidade(produtoDto.getQuantidade());
+    @PostMapping("/editar/{id}")
+    public String editarProduto(@PathVariable Long id, @ModelAttribute @Valid ProdutoDto produtoDto,
+                                BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("categorias", categoriaService.todasCategorias());
+            return "produto/ProdutoEditar";
+        }
 
-		Categoria categoria = categoriaService.categoriaId(produtoDto.getCategoriaId());
+        Produto produto = produtoService.produtoId(id);
+        if (produto != null) {
+            // Atualiza os dados do produto
+            produto.setNome(produtoDto.getNome());
+            produto.setDescricao(produtoDto.getDescricao());
+            produto.setPreco(produtoDto.getPreco());
+            produto.setQuantidade(produtoDto.getQuantidade());
 
-		if (categoria == null) {
-			throw new IllegalArgumentException("Categoria não encontrada");
-		}
+            // Atualiza a categoria do produto
+            Categoria categoria = categoriaService.categoriaId(produtoDto.getCategoriaId());
+            if (categoria != null) {
+                produto.setCategoria(categoria);
+            } else {
+                throw new IllegalArgumentException("Categoria não encontrada");
+            }
 
-		produto.setCategoria(categoria);
+            produtoService.salvarProduto(produto);
+        }
 
-		return "redirect:/produtos";
-	}
+        return "redirect:/produtos";  // Redireciona para a lista de produtos após a edição
+    }
 
-	@RequestMapping("/excluir/{id}")
-	public String excluirProduto(@ModelAttribute ProdutoDto produtoDto) {
-		Produto produto = produtoService.produtoId(produtoDto.getId());
+    @PostMapping("/excluir/{id}")
+    public String excluirProduto(@PathVariable Long id) {
+        Produto produto = produtoService.produtoId(id);
 
-		if (produto != null) {
-			produtoService.deletarProduto(produto.getId());
-		}
+        if (produto != null) {
+            produtoService.deletarProduto(produto.getId());
+        }
 
-		return "redirect:/produtos";
-	}
+        return "redirect:/produtos";
+    }
 }
