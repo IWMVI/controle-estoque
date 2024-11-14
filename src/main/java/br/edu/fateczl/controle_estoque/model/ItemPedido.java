@@ -19,7 +19,7 @@ public class ItemPedido {
     private int quantidade;
 
     @Column(precision = 8, scale = 2, nullable = false)
-    private BigDecimal precoUnitario;
+    private BigDecimal precoTotal;
 
 
     @ManyToOne(optional = false)
@@ -28,6 +28,6 @@ public class ItemPedido {
 
 
     public BigDecimal calcularSubtotal() {
-        return precoUnitario.multiply(BigDecimal.valueOf(quantidade));
+        return precoTotal.multiply(BigDecimal.valueOf(quantidade));
     }
 }

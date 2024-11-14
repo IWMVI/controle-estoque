@@ -16,14 +16,17 @@ public class Funcionario {
     @Column(nullable = false)
     private Long id;
 
+    @Column(length = 50, nullable = false)
+    private String nome;
+
+    @Column(length = 50, nullable = false)
+    private String email;
+
+    @Column(length = 50, nullable = false)
+    private String senha;
+
     @Enumerated(EnumType.STRING)
     private Cargo cargo;
 
-    @Column(precision = 8, scale = 2, nullable = false)
-    private BigDecimal salario;
-
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    private Boolean ativo;
 }

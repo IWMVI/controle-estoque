@@ -38,9 +38,6 @@ public class Produto {
 
 	private Boolean ativo;
 
-	@Column(nullable = false)
-	private int quantidade;
-
 	@Column(nullable = false, updatable = false)
 	private LocalDate dataCadastro;
 
