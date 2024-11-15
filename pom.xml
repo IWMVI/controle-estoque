@@ -81,6 +81,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Conector para comunicação com o SQL Server -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Dependência do Lombok para gerar código automaticamente, como getters, setters e construtores -->
         <dependency>
             <groupId>org.projectlombok</groupId>
