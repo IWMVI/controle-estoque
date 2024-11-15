@@ -1,5 +1,6 @@
 package br.edu.fateczl.controle_estoque.dto;
 
+import br.edu.fateczl.controle_estoque.model.Categoria;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,10 +12,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProdutoDto {
-
-    @Min(value = 1, message = "ID deve ser maior que 0")
-    private Long id;
-
     @NotEmpty(message = "Nome não pode ser vazio")
     @NotBlank(message = "Nome não deve ter apenas espaço")
     @Size(min = 3, max = 50, message = "Nome deve ter entre 3 e 50 caracteres")
@@ -28,10 +25,9 @@ public class ProdutoDto {
     @DecimalMin(value = "0.01", message = "Preço deve ser maior que 0.01")
     private BigDecimal preco;
 
-    @NotNull(message = "Quantidade não pode ser nula")
-    @Min(value = 1, message = "Quantidade deve ser maior que 1")
-    private Integer quantidade = 0;  // Valor padrão para evitar null
+    @NotNull(message = "O campo ativo é obrigatório.")
+    private Boolean ativo;
 
     @NotNull(message = "Categoria não pode ser nula")
-    private Long categoriaId;
+    private Categoria categoria;
 }

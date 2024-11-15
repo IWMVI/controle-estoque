@@ -1,0 +1,30 @@
+<table th:fragment="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="produto : ${produtos}">
+            <td th:text="${produto.nome}"></td>
+            <td th:text="${produto.categoria.nome}"></td>
+            <td th:text="${produto.descricao}"></td>
+            <td th:text="${produto.preco}"></td>
+            <!-- Exibindo "Ativo" ou "Inativo" com base no valor do atributo ativo -->
+            <td th:text="${produto.ativo ? 'Ativo' : 'Inativo'}"></td>
+            <td>
+                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">Editar</a>
+
+                <form th:action="@{/produtos/excluir/{id}(id=${produto.id})}"
+                    method="post" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

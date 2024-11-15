@@ -6,13 +6,15 @@ import org.springframework.stereotype.Service;
 import br.edu.fateczl.controle_estoque.model.Produto;
 import br.edu.fateczl.controle_estoque.repository.ProdutoRepository;
 
+import java.util.List;
+
 @Service
 public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	public Iterable<Produto> todosProdutos() {
+	public List<Produto> todosProdutos() {
 		return produtoRepository.findAll();
 	}
 
@@ -39,7 +41,7 @@ public class ProdutoService {
 		antigo.setNome(novo.getNome());
 		antigo.setDescricao(novo.getDescricao());
 		antigo.setPreco(novo.getPreco());
-		antigo.setQuantidade(novo.getQuantidade());
+		antigo.setAtivo(novo.getAtivo());
 		antigo.setCategoria(novo.getCategoria());
 
 		produtoRepository.save(antigo);
