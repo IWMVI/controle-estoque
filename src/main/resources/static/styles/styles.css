@@ -1,4 +1,4 @@
-    /* Reset básico de margin e padding */
+       /* Reset básico de margin e padding */
 * {
     margin: 0; /* Remove qualquer margem padrão em todos os elementos */
     padding: 0; /* Remove qualquer padding padrão em todos os elementos */
@@ -10,14 +10,18 @@ body {
     background-color: #F9FAFB; /* Cor de fundo clara */
     color: #333; /* Cor do texto */
     line-height: 1.6; /* Aumenta a altura da linha para melhorar a legibilidade */
-}
+    margin-top: 100px;  /* Cria um espaço de 100px para que o conteúdo não 
+    fique sobre o cabeçalho  e arrumei esse espaçamento*/
 
+}
 
     /* Estilo do Cabeçalho */
-header {
+ 
+  header {
     text-align: center; /* Centraliza o conteúdo do cabeçalho */
     margin-bottom: 40px; /* Espaço abaixo do cabeçalho */
-}
+    
+} 
 
 h1 {
     font-size: 3rem; /* Tamanho grande para o título */
@@ -31,14 +35,13 @@ p {
     margin-top: 10px; /* Espaço acima do parágrafo */
 }
 
-
     /* Estilo da tela principal (Index com Cards) */
 .main-content {
     display: flex; /* Usado para alinhamento flexível */
     flex-wrap: wrap; /* Permite que os itens se ajustem quando a tela for pequena */
     justify-content: space-around; /* Espalha os itens uniformemente com espaço ao redor */
     gap: 20px; /* Espaço entre os itens */
-    padding: 20px; /* Espaço interno da área principal */
+    padding: 15px; /* Espaço interno da área principal */
 }
 
 .card {
@@ -322,6 +325,7 @@ p {
 
 
     /* Estilos gerais */
+    /* era essa merda aqui ---------------------------------------------------------------SE PA APAGAR
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -330,7 +334,7 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: #F7F7F7;
-}
+}*/
 
 .container {
     width: 90%;
