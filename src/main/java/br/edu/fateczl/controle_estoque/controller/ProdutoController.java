@@ -5,6 +5,7 @@ import br.edu.fateczl.controle_estoque.model.Categoria;
 import br.edu.fateczl.controle_estoque.model.Produto;
 import br.edu.fateczl.controle_estoque.service.CategoriaService;
 import br.edu.fateczl.controle_estoque.service.ProdutoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,19 +25,16 @@ public class ProdutoController {
 
     @GetMapping
     public ModelAndView listarProdutos() {
-        ModelAndView mv = new ModelAndView("produto/produtos");
-        mv.addObject("produtos", produtoService.todosProdutos());
-        mv.addObject("categorias", categoriaService.todasCategorias());
+        ModelAndView mv = this.criarModelAndViewParaFormulario();
         mv.addObject("produtoDto", new ProdutoDto());
         return mv;
     }
 
     @PostMapping("/adicionar")
+    @Transactional
     public ModelAndView novoProduto(@Valid ProdutoDto requisicao, BindingResult result) {
         if (result.hasErrors()) {
-            ModelAndView mv = new ModelAndView("produto/produtos");
-            mv.addObject("produtos", produtoService.todosProdutos());
-            mv.addObject("categorias", categoriaService.todasCategorias());
+            ModelAndView mv = this.criarModelAndViewParaFormulario();
             mv.addObject("produtoDto", requisicao);
             return mv;
         }
@@ -50,21 +48,20 @@ public class ProdutoController {
     @GetMapping("/editar/{id}")
     public ModelAndView exibirFormularioEdicao(@PathVariable Long id, ProdutoDto produtoDto) {
         Produto produtoBuscado = produtoService.produtoId(id);
-
-        if (produtoBuscado != null) {
-            ModelAndView mv = new ModelAndView("produto/ProdutoEditar");
-            mv.addObject("produtoDto", produtoBuscado);
-            mv.addObject("categorias", categoriaService.todasCategorias());
-
-            return mv;
+        if (produtoBuscado == null) {
+            return new ModelAndView("redirect:/produtos");
         }
 
-        return new ModelAndView("redirect:/produtos");
+        ModelAndView mv = new ModelAndView("produto/ProdutoEditar");
+        mv.addObject("produtoDto", produtoBuscado);
+        mv.addObject("categorias", categoriaService.todasCategorias());
+        return mv;
     }
 
 
     @PostMapping("/editar/{id}")
-    public ModelAndView editarProduto(@PathVariable Long id, @ModelAttribute @Valid ProdutoDto produtoDto, BindingResult result) {
+    @Transactional
+    public ModelAndView editarProduto(@PathVariable Long id, @Valid ProdutoDto requisicao, BindingResult result) {
         if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView("produto/ProdutoEditar");
             mv.addObject("categorias", categoriaService.todasCategorias());
@@ -73,13 +70,14 @@ public class ProdutoController {
 
         Produto produtoAntigo = produtoService.produtoId(id);
         if (produtoAntigo != null) {
-            produtoService.atualizarProduto(produtoAntigo, this.dtoParaProduto(produtoDto));
+            produtoService.atualizarProduto(produtoAntigo, this.dtoParaProduto(requisicao));
         }
 
         return new ModelAndView("redirect:/produtos");
     }
 
     @PostMapping("/excluir/{id}")
+    @Transactional
     public String excluirProduto(@PathVariable Long id) {
         Produto produto = produtoService.produtoId(id);
 
@@ -90,11 +88,11 @@ public class ProdutoController {
         return "redirect:/produtos";
     }
 
+
     private ModelAndView criarModelAndViewParaFormulario() {
         ModelAndView mv = new ModelAndView("produto/produtos");
         mv.addObject("produtos", produtoService.todosProdutos());
         mv.addObject("categorias", categoriaService.todasCategorias());
-        mv.addObject("produtoDto", new ProdutoDto());
         return mv;
     }
 

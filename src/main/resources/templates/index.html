@@ -1,62 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Página de Index</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
-        <link rel="stylesheet" href="/styles/styles.css" />
-    </head>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
 
-    <body>
-        <!-- Cabeçalho com Navbar -->
-        <header>
-            <h1>Bem-vindo ao Controle de Estoque</h1>
-            <p>Gerencie facilmente seus produtos e mais!</p>
-        </header>
+<head th:replace="fragments/head('Página Inicial')"></head>
 
-        <!-- Main Content com Cards -->
-        <div class="main-content">
-            <div class="card">
-                <!-- Link para a página de produtos, agora com Thymeleaf -->
-                <a th:href="@{/produtos}" class="card-link">
-                    <div class="icon">
-                        <i class="fas fa-box"></i>
-                    </div>
-                    <h2>Produtos</h2>
-                    <p>Visualize, edite e gerencie seus produtos.</p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="/categorias" class="card-link">
-                    <div class="icon">
-                        <i class="fas fa-list-alt"></i>
-                    </div>
-                    <h2>Categorias</h2>
-                    <p>Organize seus produtos por categoria.</p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="/clientes" class="card-link">
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h2>Clientes</h2>
-                    <p>Gerencie as informações dos seus clientes.</p>
-                </a>
-            </div>
-            <div class="card">
-                <a href="/relatorios" class="card-link">
-                    <div class="icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h2>Relatórios</h2>
-                    <p>Visualize relatórios de vendas e estoque.</p>
-                </a>
-            </div>
+<body>
+    <!-- Cabeçalho com Navbar -->
+    <header>
+        <h1>Bem-vindo ao Controle de Estoque</h1>
+        <p>Gerencie facilmente seus produtos e mais!</p>
+    </header>
+
+    <!-- Main Content com Cards -->
+    <div class="main-content">
+        <div class="card">
+            <!-- Link para a página de produtos, agora com Thymeleaf -->
+            <a th:href="@{/produtos}" class="card-link">
+                <div class="icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <h2>Produtos</h2>
+                <p>Visualize, edite e gerencie seus produtos.</p>
+            </a>
         </div>
-    </body>
+        <div class="card">
+            <a href="/categorias" class="card-link">
+                <div class="icon">
+                    <i class="fas fa-list-alt"></i>
+                </div>
+                <h2>Categorias</h2>
+                <p>Organize seus produtos por categoria.</p>
+            </a>
+        </div>
+        <div class="card">
+            <a href="/clientes" class="card-link">
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>Clientes</h2>
+                <p>Gerencie as informações dos seus clientes.</p>
+            </a>
+        </div>
+        <div class="card">
+            <a href="/relatorios" class="card-link">
+                <div class="icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2>Relatórios</h2>
+                <p>Visualize relatórios de vendas e estoque.</p>
+            </a>
+        </div>
+    </div>
+</body>
 </html>

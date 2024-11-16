@@ -1,17 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Editar Produto</title>
-</head>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Editar Produto')"></head>
+
 <body>
-<header>
-    <h1>Editar Produto</h1>
-    <a href="/produtos">Voltar à Lista de Produtos</a>
-</header>
-
     <main th:replace="produto/ProdutoFormulario :: form('Editar', '/produtos/editar/' + ${produtoDto.id}, true)"></main>
-
 </body>
 </html>

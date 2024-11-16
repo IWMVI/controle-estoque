@@ -1,4 +1,4 @@
-/* Reset básico de margin e padding */
+    /* Reset básico de margin e padding */
 * {
     margin: 0; /* Remove qualquer margem padrão em todos os elementos */
     padding: 0; /* Remove qualquer padding padrão em todos os elementos */
@@ -7,12 +7,13 @@
 
 body {
     font-family: "Roboto", sans-serif; /* Define a fonte para o corpo da página */
-    background-color: #f9fafb; /* Cor de fundo clara */
+    background-color: #F9FAFB; /* Cor de fundo clara */
     color: #333; /* Cor do texto */
     line-height: 1.6; /* Aumenta a altura da linha para melhorar a legibilidade */
 }
 
-/* Estilo do Cabeçalho */
+
+    /* Estilo do Cabeçalho */
 header {
     text-align: center; /* Centraliza o conteúdo do cabeçalho */
     margin-bottom: 40px; /* Espaço abaixo do cabeçalho */
@@ -20,7 +21,7 @@ header {
 
 h1 {
     font-size: 3rem; /* Tamanho grande para o título */
-    color: #4caf50; /* Cor verde para o título */
+    color: #4CAF50; /* Cor verde para o título */
     font-weight: 600; /* Define o peso da fonte para o título */
 }
 
@@ -30,7 +31,8 @@ p {
     margin-top: 10px; /* Espaço acima do parágrafo */
 }
 
-/* Estilo da tela principal (Index com Cards) */
+
+    /* Estilo da tela principal (Index com Cards) */
 .main-content {
     display: flex; /* Usado para alinhamento flexível */
     flex-wrap: wrap; /* Permite que os itens se ajustem quando a tela for pequena */
@@ -40,8 +42,8 @@ p {
 }
 
 .card {
-    background-color: #ffffff; /* Cor de fundo branca para o card */
-    border: 1px solid #e0e0e0; /* Borda cinza clara */
+    background-color: #FFF; /* Cor de fundo branca para o card */
+    border: 1px solid #E0E0E0; /* Borda cinza clara */
     border-radius: 10px; /* Bordas arredondadas */
     width: 250px; /* Largura fixa do card */
     padding: 20px; /* Espaço interno dentro do card */
@@ -79,7 +81,8 @@ p {
     color: #777; /* Cor cinza mais clara para o texto */
 }
 
-/* Responsividade */
+
+    /* Responsividade */
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column; /* Organiza os itens em coluna para telas pequenas */
@@ -87,13 +90,14 @@ p {
     }
 }
 
-/* Estilo dos Botões */
+
+    /* Estilo dos Botões */
 .button-back,
 .button,
 #search-form button {
     padding: 10px 20px; /* Espaçamento interno do botão */
-    background-color: #4caf50; /* Cor de fundo verde */
-    color: white; /* Cor do texto */
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: #FFF; /* Cor do texto */
     font-size: 1.1rem; /* Tamanho do texto do botão */
     text-decoration: none; /* Remove sublinhado dos links */
     border-radius: 6px; /* Bordas arredondadas */
@@ -108,7 +112,7 @@ p {
 
 .button-back:hover,
 .button:hover {
-    background-color: #45a049; /* Cor mais escura para o botão ao passar o mouse */
+    background-color: #45A049; /* Cor mais escura para o botão ao passar o mouse */
 }
 
 #search-form {
@@ -121,7 +125,7 @@ p {
 
 #search-form input[type="text"] {
     padding: 10px 15px; /* Espaçamento interno do campo de texto */
-    border: 1px solid #ddd; /* Borda do campo de texto */
+    border: 1px solid #DDD; /* Borda do campo de texto */
     border-radius: 5px; /* Bordas arredondadas */
     font-size: 1rem; /* Tamanho da fonte do campo de texto */
     width: 50%; /* Largura do campo de texto */
@@ -129,13 +133,13 @@ p {
 }
 
 #search-form input[type="text"]:focus {
-    border-color: #4caf50; /* Muda a cor da borda para verde ao focar no campo */
+    border-color: #4CAF50; /* Muda a cor da borda para verde ao focar no campo */
 }
 
 #search-form button {
     padding: 10px 20px; /* Espaçamento interno do botão de busca */
-    background-color: #4caf50; /* Cor de fundo verde */
-    color: white; /* Cor do texto do botão */
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: #FFF; /* Cor do texto do botão */
     border: none; /* Remove a borda padrão */
     border-radius: 5px; /* Bordas arredondadas */
     font-size: 1rem; /* Tamanho do texto do botão */
@@ -147,7 +151,8 @@ p {
     margin-right: 5px; /* Espaço à direita do ícone no botão */
 }
 
-/* Tabela de Produtos */
+
+    /* Tabela de Produtos */
 .produto-table {
     width: 100%; /* Largura total da tabela */
     border-collapse: collapse; /* Remove o espaçamento entre as células */
@@ -159,23 +164,23 @@ p {
 .produto-table td {
     padding: 12px 15px; /* Espaçamento interno das células */
     text-align: left; /* Alinha o texto à esquerda */
-    border: 1px solid #ddd; /* Borda das células */
+    border: 1px solid #DDD; /* Borda das células */
     font-size: 1rem; /* Tamanho da fonte dentro da tabela */
 }
 
 .produto-table th {
-    background-color: #4caf50; /* Cor de fundo verde para o cabeçalho */
-    color: white; /* Cor do texto do cabeçalho */
+    background-color: #4CAF50; /* Cor de fundo verde para o cabeçalho */
+    color: #FFF; /* Cor do texto do cabeçalho */
     text-transform: uppercase; /* Deixa o texto em maiúsculas */
     letter-spacing: 0.05rem; /* Adiciona um pequeno espaçamento entre as letras */
 }
 
 .produto-table tr:nth-child(even) {
-    background-color: #f7f7f7; /* Cor alternada para as linhas da tabela */
+    background-color: #F7F7F7; /* Cor alternada para as linhas da tabela */
 }
 
 .produto-table tr:hover {
-    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse sobre a linha */
+    background-color: #F1F1F1; /* Cor de fundo ao passar o mouse sobre a linha */
 }
 
 .produto-table td {
@@ -198,22 +203,22 @@ p {
 }
 
 .edit-btn {
-    background-color: #ff9800; /* Cor de fundo laranja para o botão de editar */
-    color: white; /* Cor do texto do botão */
+    background-color: #FF9800; /* Cor de fundo laranja para o botão de editar */
+    color: #FFF; /* Cor do texto do botão */
 }
 
 .edit-btn:hover {
-    background-color: #fb8c00; /* Cor mais escura ao passar o mouse */
+    background-color: #FB8C00; /* Cor mais escura ao passar o mouse */
     transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
 }
 
 .delete-btn {
-    background-color: #f44336; /* Cor de fundo vermelha para o botão de excluir */
-    color: white; /* Cor do texto do botão */
+    background-color: #F44336; /* Cor de fundo vermelha para o botão de excluir */
+    color: #FFF; /* Cor do texto do botão */
 }
 
 .delete-btn:hover {
-    background-color: #e53935; /* Cor mais escura ao passar o mouse */
+    background-color: #E53935; /* Cor mais escura ao passar o mouse */
     transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
 }
 
@@ -222,7 +227,7 @@ p {
     margin-right: 5px; /* Espaço à direita do ícone nos botões */
 }
 
-/* Modal de Edição */
+    /* Modal de Edição */
 #edit-modal {
     display: none; /* Esconde o modal inicialmente */
     position: fixed; /* Fixa o modal na tela */
@@ -241,7 +246,7 @@ p {
 }
 
 .modal-content {
-    background-color: white; /* Cor de fundo do conteúdo do modal */
+    background-color: #FFF; /* Cor de fundo do conteúdo do modal */
     padding: 30px; /* Espaço interno do modal */
     border-radius: 8px; /* Bordas arredondadas */
     width: 400px; /* Largura fixa do modal */
@@ -263,15 +268,15 @@ p {
     width: 100%; /* Largura total do campo de entrada */
     padding: 12px; /* Espaço interno */
     margin-bottom: 20px; /* Espaço abaixo do campo */
-    border: 1px solid #ddd; /* Borda cinza para o campo */
+    border: 1px solid #DDD; /* Borda cinza para o campo */
     border-radius: 6px; /* Bordas arredondadas */
     font-size: 1rem; /* Tamanho da fonte */
 }
 
 .modal-content button {
     padding: 10px 20px; /* Espaçamento interno do botão dentro do modal */
-    background-color: #4caf50; /* Cor de fundo verde */
-    color: white; /* Cor do texto do botão */
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: #FFF; /* Cor do texto do botão */
     border: none; /* Remove a borda do botão */
     border-radius: 6px; /* Bordas arredondadas */
     font-size: 1rem; /* Tamanho da fonte do botão */
@@ -285,7 +290,8 @@ p {
     cursor: pointer; /* Indica que o ícone é clicável */
 }
 
-/* Estilo das Ações (botões de Adicionar e Buscar Produto) */
+
+    /* Estilo das Ações (botões de Adicionar e Buscar Produto) */
 .actions {
     display: flex; /* Usar flexbox para alinhamento */
     justify-content: center; /* Centraliza os botões horizontalmente */
@@ -297,8 +303,8 @@ p {
     display: inline-flex; /* Para os botões ficarem na mesma linha */
     align-items: center; /* Centraliza o conteúdo dentro do botão */
     padding: 12px 20px; /* Aumenta o tamanho do botão */
-    background-color: #4caf50; /* Cor de fundo verde */
-    color: white; /* Cor do texto */
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: #FFF; /* Cor do texto */
     font-size: 1.1rem; /* Tamanho do texto */
     border-radius: 6px; /* Bordas arredondadas */
     text-decoration: none; /* Remove o sublinhado */
@@ -311,4 +317,87 @@ p {
 
 .actions .button i {
     margin-right: 8px; /* Espaço à direita do ícone no botão */
+}
+
+
+
+    /* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #F7F7F7;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    background-color: #FFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+
+    /* Tabela de Pedidos */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #DDD;
+    text-align: center;
+}
+
+th {
+    background-color: #007BFF;
+    color: #FFF;
+    font-weight: bold;
+}
+
+td {
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #F1F1F1;
+}
+
+    /* Botões de ação */
+.btn {
+    background-color: #28A745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #DC3545;
+}
+
+.btn-danger:hover {
+    background-color: #C82333;
 }
