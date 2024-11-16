@@ -18,12 +18,13 @@
             <!-- Exibindo "Ativo" ou "Inativo" com base no valor do atributo ativo -->
             <td th:text="${produto.ativo ? 'Ativo' : 'Inativo'}"></td>
             <td>
-                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">Editar</a>
-
-                <form th:action="@{/produtos/excluir/{id}(id=${produto.id})}"
-                    method="post" style="display:inline;">
-                    <button type="submit">Excluir</button>
-                </form>
+                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">
+                    <i class="fa-solid fa-pen text-primary"></i>
+                </a>
+                <a th:attr="onclick=|deletarCurso('${produto.id}', '${produto.nome}')|"
+                        type="button" data-bs-toggle="modal" data-bs-target="#modalId">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </a>
             </td>
         </tr>
     </tbody>

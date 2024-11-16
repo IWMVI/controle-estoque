@@ -20,5 +20,9 @@
 
     <h2>Produtos Cadastrados</h2>
     <table th:replace="produto/ProdutoTabela"></table>
+
+    <div th:replace="fragments/modal :: modal('produto')"></div>
+
+    <script type="text/javascript" th:src="@{/js/confirmarExclusao.js}"></script>
 </body>
 </html>
