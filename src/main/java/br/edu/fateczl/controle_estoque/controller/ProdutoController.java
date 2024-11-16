@@ -18,10 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService produtoService;
+    private final ProdutoService produtoService;
 
     @Autowired
-    private CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
+
+    public ProdutoController(ProdutoService produtoService, CategoriaService categoriaService) {
+        this.produtoService = produtoService;
+        this.categoriaService = categoriaService;
+    }
+
 
     @GetMapping
     public ModelAndView listarProdutos() {
@@ -58,8 +64,7 @@ public class ProdutoController {
         return mv;
     }
 
-
-    @PostMapping("/editar/{id}")
+    @PutMapping("/editar/{id}")
     @Transactional
     public ModelAndView editarProduto(@PathVariable Long id, @Valid ProdutoDto requisicao, BindingResult result) {
         if (result.hasErrors()) {
@@ -76,7 +81,7 @@ public class ProdutoController {
         return new ModelAndView("redirect:/produtos");
     }
 
-    @PostMapping("/excluir/{id}")
+    @DeleteMapping("/excluir/{id}")
     @Transactional
     public String excluirProduto(@PathVariable Long id) {
         Produto produto = produtoService.produtoId(id);
