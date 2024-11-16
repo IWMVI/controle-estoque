@@ -1,4 +1,4 @@
-function deletarCurso(id, nome) {
+function deletarProduto(id, nome) {
     document.getElementById("modalName").innerHTML = nome;
     document
         .getElementById("formDeletar")

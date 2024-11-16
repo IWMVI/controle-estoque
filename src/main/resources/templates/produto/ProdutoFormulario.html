@@ -12,7 +12,7 @@
                 <!-- Input text para Nome -->
                 <div class="form-floating col-md-12">
                     <input type="text" class="form-control" placeholder=" " th:field="*{nome}"
-                           th:errorclass="is-invalid" required maxlength="100">
+                           th:errorclass="is-invalid" required minlength="3" maxlength="100">
                     <label>Nome</label>
                     <div class="invalid-feedback" th:errors="*{nome}"></div>
                 </div>
@@ -20,11 +20,11 @@
                 <!-- Input text para Descrição -->
                 <div class="form-floating col-md-12">
                     <input type="text" class="form-control" placeholder=" " th:field="*{descricao}"
-                           th:errorclass="is-invalid" maxlength="100">
+                           th:errorclass="is-invalid" required maxlength="100">
                     <label>Descrição</label>
                     <div class="invalid-feedback" th:errors="*{descricao}"></div>
                 </div>
-                
+
                 <!-- Input text para Preço -->
                 <div class="form-floating col-md-12">
                     <input type="number" class="form-control" th:field="*{preco}"

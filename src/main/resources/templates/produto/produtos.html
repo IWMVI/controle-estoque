@@ -12,12 +12,6 @@
     <!-- Formulário para adicionar novo produto -->
     <main th:replace="produto/ProdutoFormulario :: form('Cadastrar', '/produtos/adicionar', false)"></main>
 
-    <!-- Botão para gerar o relatório -->
-    <h2>Relatório de Produtos</h2>
-    <form method="get" action="/produtos/relatorio">
-        <button type="submit">Gerar Relatório</button>
-    </form>
-
     <h2>Produtos Cadastrados</h2>
     <table th:replace="produto/ProdutoTabela"></table>
 
