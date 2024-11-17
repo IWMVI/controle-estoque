@@ -1,0 +1,32 @@
+<div th:fragment="CategoriaModalFormulario(acao, action, isEdit, id)"
+    th:attr="id=${id}" class="modal fade" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" th:text="${acao} + ' Categoria'"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{${action}}" method="POST">
+                    <input type="hidden" name="_method" value="PUT" th:if="${isEdit}" />
+                    <div class="form-group">
+                        <label th:attr="for=${isEdit ? 'edit-category-name' : 'category-name'}">Nome:</label>
+                        <input type="text" class="form-control"
+                               th:attr="id=${isEdit ? 'edit-category-name' : 'category-name'}"
+                               name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label th:attr="for=${isEdit ? 'edit-category-description' : 'category-description'}">Descrição:</label>
+                        <input type="text" class="form-control"
+                               th:attr="id=${isEdit ? 'edit-category-description' : 'category-description'}"
+                               name="descricao">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" th:text="${acao}"></button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

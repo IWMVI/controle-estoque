@@ -1,0 +1,29 @@
+<div th:fragment="table" class="container">
+    <table class="produto-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="categoria-list">
+            <tr th:each="categoria : ${categorias}">
+                <td th:text="${categoria.nome}">Nome da Categoria</td>
+                <td th:text="${categoria.descricao}">Descrição da Categoria</td>
+                <td>
+                    <a type="button" 
+                       data-bs-toggle="modal" 
+                       data-bs-target="#modalEdicao"
+                       th:attr="data-id=${categoria.id}, data-nome=${categoria.nome}, data-descricao=${categoria.descricao}">
+                        <i class="fa-solid fa-pen text-primary"></i>
+                    </a>
+                    <a th:attr="onclick=|deletarRegistro('${categoria.nome}', '/categorias/excluir/${categoria.id}')|"
+                       type="button" data-bs-toggle="modal" data-bs-target="#modalId">
+                        <i class="fa-solid fa-trash text-danger"></i>
+                    </a>
+                </td>
+            </tr>            
+        </tbody>
+    </table>
+</div>
