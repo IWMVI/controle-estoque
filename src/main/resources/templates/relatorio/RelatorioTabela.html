@@ -1,0 +1,24 @@
+<table th:fragment="tabela" th:if="${!#lists.isEmpty(relatorio)}">
+    <thead>
+        <tr>
+            <th>ID Produto</th>
+            <th>Nome Produto</th>
+            <th>Preço</th>
+            <th>Status</th>
+            <th>Data Alteração</th>
+            <th>Descrição</th>
+            <th>Nome Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="produto : ${relatorio}">
+            <td th:text="${produto[0]}"></td> <!-- ProdutoId -->
+            <td th:text="${produto[1]}"></td> <!-- NomeProduto -->
+            <td th:text="${produto[2]}"></td> <!-- Preco -->
+            <td th:text="${produto[3]}"></td> <!-- Ativo -->
+            <td th:text="${produto[4]}"></td> <!-- DataAlteracao -->
+            <td th:text="${produto[5]}"></td> <!-- Descricao -->
+            <td th:text="${produto[6]}"></td> <!-- NomeCategoria -->
+        </tr>
+    </tbody>
+</table>
