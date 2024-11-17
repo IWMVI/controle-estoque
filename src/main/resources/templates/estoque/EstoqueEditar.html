@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Editar Estoque')"></head>
+
+<body>
+    <main th:replace="estoque/EstoqueFormulario :: form('Editar', '/estoques/editar/' + ${estoqueDto.id}, true)"></main>
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+<main th:fragment="form(formTitle, action, isEdit)">
+    <div class="central-form">
+        <h2 class="form-title" th:text="${formTitle}">Título</h2>
+
+        <!-- Se for uma edição, o método HTTP será PUT -->
+        <!-- th:object: estoqueDto vem do controller (listarTodos())-->
+        <form
+            method="POST"
+            class="form-body"
+            th:object="${estoqueDto}"
+            th:action="${action}"
+        >
+            <!-- Simula o método PUT para edição de estoque -->
+            <input type="hidden" name="_method" value="PUT" th:if="${isEdit}" />
+
+            <div class="row">
+                <!-- Input para Localização -->
+                <div class="form-floating col-md-12">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder=" "
+                        th:field="*{localizacao}"
+                        th:errorclass="is-invalid"
+                        required
+                        minlength="3"
+                        maxlength="100"
+                    />
+                    <label>Localização</label>
+                    <div
+                        class="invalid-feedback"
+                        th:errors="*{localizacao}"
+                    ></div>
+                </div>
+
+                <!-- Input para Descrição -->
+                <div class="form-floating col-md-12">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder=" "
+                        th:field="*{descricao}"
+                        th:errorclass="is-invalid"
+                        required
+                        maxlength="100"
+                    />
+                    <label>Descrição</label>
+                    <div
+                        class="invalid-feedback"
+                        th:errors="*{descricao}"
+                    ></div>
+                </div>
+
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">
+                        Salvar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>

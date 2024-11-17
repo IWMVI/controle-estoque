@@ -25,11 +25,11 @@ public class Estoque {
     private LocalDate ultimaAtualizacao;
 
     @OneToMany(mappedBy = "estoque", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EstoqueProduto> produtos;  // Lista de produtos no estoque
-
+    private List<EstoqueProduto> produtos; // Lista de produtos no estoque
 
     @PreUpdate
     public void atualizarDataEstoque() {
         this.ultimaAtualizacao = LocalDate.now();
     }
+
 }

@@ -1,0 +1,28 @@
+<table th:fragment="table">
+    <thead>
+        <tr>
+            <th>Localização</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="estoque : ${estoques}">
+            <td th:text="${estoque.localizacao}"></td>
+            <td th:text="${estoque.descricao}"></td>
+            <td>
+                <a th:href="@{/estoques/editar/{id}(id=${estoque.id})}">
+                    <i class="fa-solid fa-pen text-primary"></i>
+                </a>
+                <a
+                    th:attr="onclick=|deletarRegistro('${estoque.localizacao}', '/estoques/excluir/${estoque.id}')|"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalId"
+                >
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

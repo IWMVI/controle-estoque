@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head('Página Inicial')"></head>
 
-<head th:replace="fragments/head('Página Inicial')"></head>
+    <body>
+        <!-- Cabeçalho com Navbar -->
+        <header>
+            <h1>Bem-vindo ao Controle de Estoque</h1>
+            <p>Gerencie facilmente seus produtos e mais!</p>
+        </header>
 
-<body>
-    <!-- Cabeçalho com Navbar -->
-    <header>
-        <h1>Bem-vindo ao Controle de Estoque</h1>
-        <p>Gerencie facilmente seus produtos e mais!</p>
-    </header>
-
-    <!-- Main Content com Cards -->
-    <div class="main-content">
-        <div class="card">
-            <!-- Link para a página de produtos, agora com Thymeleaf -->
-            <a th:href="@{/produtos}" class="card-link">
-                <div class="icon">
-                    <i class="fas fa-box"></i>
-                </div>
-                <h2>Produtos</h2>
-                <p>Visualize, edite e gerencie seus produtos.</p>
-            </a>
+        <!-- Main Content com Cards -->
+        <div class="main-content">
+            <div class="card">
+                <!-- Link para a página de produtos, agora com Thymeleaf -->
+                <a th:href="@{/produtos}" class="card-link">
+                    <div class="icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h2>Produtos</h2>
+                    <p>Visualize, edite e gerencie seus produtos.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="/categorias" class="card-link">
+                    <div class="icon">
+                        <i class="fas fa-list-alt"></i>
+                    </div>
+                    <h2>Categorias</h2>
+                    <p>Organize seus produtos por categoria.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="/clientes" class="card-link">
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>Clientes</h2>
+                    <p>Gerencie as informações dos seus clientes.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="/relatorios" class="card-link">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2>Relatórios</h2>
+                    <p>Visualize relatórios de vendas e estoque.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="/estoques" class="card-link">
+                    <div class="icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h2>Estoques</h2>
+                    <p>Gerencie os estoques de seus produtos.</p>
+                </a>
+            </div>
         </div>
-        <div class="card">
-            <a href="/categorias" class="card-link">
-                <div class="icon">
-                    <i class="fas fa-list-alt"></i>
-                </div>
-                <h2>Categorias</h2>
-                <p>Organize seus produtos por categoria.</p>
-            </a>
-        </div>
-        <div class="card">
-            <a href="/clientes" class="card-link">
-                <div class="icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h2>Clientes</h2>
-                <p>Gerencie as informações dos seus clientes.</p>
-            </a>
-        </div>
-        <div class="card">
-            <a href="/relatorios" class="card-link">
-                <div class="icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h2>Relatórios</h2>
-                <p>Visualize relatórios de vendas e estoque.</p>
-            </a>
-        </div>
-    </div>
-</body>
+    </body>
 </html>

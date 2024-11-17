@@ -2,33 +2,60 @@
     <div class="central-form">
         <h2 class="form-title" th:text="${formTitle}">Título</h2>
 
-        <form method="POST" class="form-body" th:object="${produtoDto}" th:action="@{${action}}">
-
+        <form
+            method="POST"
+            class="form-body"
+            th:object="${produtoDto}"
+            th:action="@{${action}}"
+        >
             <!-- Campo oculto para simular o método PUT apenas para edição -->
-            <input type="hidden" name="_method" value="PUT" th:if="${isEdit}"/>
+            <input type="hidden" name="_method" value="PUT" th:if="${isEdit}" />
 
             <div class="row">
-
                 <!-- Input text para Nome -->
                 <div class="form-floating col-md-12">
-                    <input type="text" class="form-control" placeholder=" " th:field="*{nome}"
-                           th:errorclass="is-invalid" required minlength="3" maxlength="100">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder=" "
+                        th:field="*{nome}"
+                        th:errorclass="is-invalid"
+                        required
+                        minlength="3"
+                        maxlength="100"
+                    />
                     <label>Nome</label>
                     <div class="invalid-feedback" th:errors="*{nome}"></div>
                 </div>
 
                 <!-- Input text para Descrição -->
                 <div class="form-floating col-md-12">
-                    <input type="text" class="form-control" placeholder=" " th:field="*{descricao}"
-                           th:errorclass="is-invalid" required maxlength="100">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder=" "
+                        th:field="*{descricao}"
+                        th:errorclass="is-invalid"
+                        required
+                        maxlength="100"
+                    />
                     <label>Descrição</label>
-                    <div class="invalid-feedback" th:errors="*{descricao}"></div>
+                    <div
+                        class="invalid-feedback"
+                        th:errors="*{descricao}"
+                    ></div>
                 </div>
 
                 <!-- Input text para Preço -->
                 <div class="form-floating col-md-12">
-                    <input type="number" class="form-control" th:field="*{preco}"
-                           th:errorclass="is-invalid" required step="0.01">
+                    <input
+                        type="number"
+                        class="form-control"
+                        th:field="*{preco}"
+                        th:errorclass="is-invalid"
+                        required
+                        step="0.01"
+                    />
                     <label>Preço</label>
                     <div class="invalid-feedback" th:errors="*{preco}"></div>
                 </div>
@@ -45,22 +72,31 @@
 
                 <!-- Dropdown para Categoria -->
                 <div class="form-floating col-md-12">
-                    <select class="form-select" th:field="*{categoria.id}" required>
-                        <option value="" disabled>Selecione uma Categoria</option>
-                        <option th:each="categoria : ${categorias}" 
-                                th:value="${categoria.id}" 
-                                th:text="${categoria.nome}"
-                                th:selected="${categoria.id} == ${produtoDto.categoria.id}">
+                    <select
+                        class="form-select"
+                        th:field="*{categoria.id}"
+                        required
+                    >
+                        <option value="" disabled>
+                            Selecione uma Categoria
                         </option>
+                        <option
+                            th:each="categoria : ${categorias}"
+                            th:value="${categoria.id}"
+                            th:text="${categoria.nome}"
+                            th:selected="${categoria.id} == ${produtoDto.categoria.id}"
+                        ></option>
                     </select>
                     <label>Categoria</label>
-                    <div class="invalid-feedback" th:errors="*{categoria.id}"></div>
+                    <div
+                        class="invalid-feedback"
+                        th:errors="*{categoria.id}"
+                    ></div>
                 </div>
 
                 <button class="btn btn-primary btn-form" type="submit">
                     <i class="fas fa-solid fa-upload"></i>Enviar
                 </button>
-
             </div>
         </form>
     </div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head('Gerenciar Estoque')"> </head>
+
+    <body>
+        <header>
+            <h1>Gerenciar Estoques</h1>
+            <a href="/">Voltar à Página Inicial</a>
+        </header>
+
+        <!-- Formulário para adicionar um novo estoque -->
+        <main>
+            <div th:replace="estoque/EstoqueFormulario :: form(formTitle='Cadastrar',
+                action='/estoques/adicionar', isEdit=false)"></div>
+        </main>
+
+        <h2>Estoques Cadastrados</h2>
+        <table th:replace="estoque/EstoqueTabela"></table>
+
+        <div th:replace="fragments/modal :: modal ('estoque')"></div>
+
+        <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    </body>
+</html>
