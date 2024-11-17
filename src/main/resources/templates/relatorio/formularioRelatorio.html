@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Relatório de Produtos</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                padding: 20px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            table,
+            th,
+            td {
+                border: 1px solid black;
+            }
+            th,
+            td {
+                padding: 10px;
+                text-align: left;
+            }
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Gerar Relatório de Produtos</h1>
+
+        <!-- Formulário para o usuário inserir parâmetros -->
+        <form action="/relatorios" method="get">
+            <label for="categoriaId">Categoria:</label>
+            <select name="categoriaId" id="categoriaId">
+                <option value="1" th:selected="${categoriaId == 1}">
+                    Categoria 1
+                </option>
+                <option value="2" th:selected="${categoriaId == 2}">
+                    Categoria 2
+                </option>
+                <option value="3" th:selected="${categoriaId == 3}">
+                    Categoria 3
+                </option>
+            </select>
+            <br /><br />
+
+            <label for="status">Ativo:</label>
+            <select name="status" id="status">
+                <option value="true" th:selected="${status == true}">
+                    Ativo
+                </option>
+                <option value="false" th:selected="${status == false}">
+                    Inativo
+                </option>
+            </select>
+            <br /><br />
+
+            <button type="submit">Gerar Relatório</button>
+        </form>
+
+        <hr />
+
+        <!-- Exibição do Relatório -->
+        <div th:if="${#lists.isEmpty(relatorio)}" class="error">
+            Nenhum produto encontrado para a categoria informada.
+        </div>
+
+        <table th:if="${!#lists.isEmpty(relatorio)}">
+            <thead>
+                <tr>
+                    <th>ID Produto</th>
+                    <th>Nome Produto</th>
+                    <th>Preço</th>
+                    <th>Status</th>
+                    <th>Data Alteração</th>
+                    <th>Descrição</th>
+                    <th>Nome Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${relatorio}">
+                    <td th:text="${produto[0]}"></td>
+                    <!-- ProdutoId -->
+                    <td th:text="${produto[1]}"></td>
+                    <!-- NomeProduto -->
+                    <td th:text="${produto[2]}"></td>
+                    <!-- Preco -->
+                    <td th:text="${produto[3]}"></td>
+                    <!-- Ativo -->
+                    <td th:text="${produto[4]}"></td>
+                    <!-- DataAlteracao -->
+                    <td th:text="${produto[5]}"></td>
+                    <!-- Descricao -->
+                    <td th:text="${produto[6]}"></td>
+                    <!-- NomeCategoria -->
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
