@@ -1,0 +1,76 @@
+<main th:fragment="form(formTitle, action, isEdit)">
+    <div class="central-form">
+        <h2 class="form-title" th:text="${formTitle}">Título</h2>
+
+        <form
+            method="POST"
+            class="form-body"
+            th:object="${itemPedidoDto}"
+            th:action="@{${action}}"
+        >
+            <!-- Campo oculto para simular o método PUT apenas para edição -->
+            <input type="hidden" name="_method" value="PUT" th:if="${isEdit}" />
+
+            <div class="row">
+                <!-- Input number para Quantidade -->
+                <div class="form-floating col-md-12">
+                    <input
+                        type="number"
+                        class="form-control"
+                        th:field="*{quantidade}"
+                        th:errorclass="is-invalid"
+                        required
+                        step="1"
+                    />
+                    <label>Quantidade</label>
+                    <div class="invalid-feedback" th:errors="*{quantidade}"></div>
+                </div>
+
+                <!-- Dropdown para Produto -->
+                <div class="form-floating col-md-12">
+                    <select
+                        class="form-select"
+                        th:field="*{produto.id}"
+                        required
+                    >
+                        <option value="" disabled>
+                            Selecione um Produto
+                        </option>
+                        <option
+                            th:each="produto : ${produtos}"
+                            th:value="${produto.id}"
+                            th:text="${produto.nome}"
+                            th:selected="${produto.id} == ${itemPedidoDto.produto.id}"
+                        ></option>
+                    </select>
+                    <label>Produto</label>
+                    <div
+                        class="invalid-feedback"
+                        th:errors="*{produto.id}"
+                    ></div>
+                </div>
+
+                
+                <!-- Dropdown para Pedido com ID fixo de 1 -->
+                <div class="form-floating col-md-12">
+                    <select
+                        class="form-select"
+                        th:field="*{pedido.id}"
+                        required
+                    >
+                        <option value="1" selected>Pedido 1</option>
+                    </select>
+                    <label>Pedido</label>
+                    <div
+                        class="invalid-feedback"
+                        th:errors="*{pedido.id}"
+                    ></div>
+                </div>
+
+                <button class="btn btn-primary btn-form" type="submit">
+                    <i class="fas fa-solid fa-upload"></i>Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+</main>

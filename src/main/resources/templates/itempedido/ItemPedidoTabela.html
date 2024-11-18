@@ -1,0 +1,28 @@
+<table th:fragment="tabela">
+    <thead>
+        <tr>
+            <th>Quantidade</th>
+            <th>Preço Total</th>
+            <th>Produto Nome</th>
+            <th>Produto Preço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item : ${itens}">
+            <td th:text="${item.quantidade}"></td>
+            <td th:text="${item.precoTotal}"></td>
+            <td th:text="${item.produto.nome}"></td>
+            <td th:text="${item.produto.preco}"></td>
+            <td class="action-buttons">
+                <a th:href="@{/itens/editar/{id}(id=${item.id})}">
+                    <i class="fa-solid fa-pen text-primary"></i>
+                </a>
+                <a th:attr="onclick=|deletarRegistro('${item.id}', '/itens/excluir/${item.id}')|"
+                        type="button" data-bs-toggle="modal" data-bs-target="#modalId">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

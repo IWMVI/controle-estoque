@@ -24,8 +24,7 @@ public class Pedido {
     @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
 
-    @OneToMany
-    @JoinColumn(name = "pedido_id", nullable = false)
+    @OneToMany(mappedBy = "pedido") // mapeamento é feito em ItemPedido
     private List<ItemPedido> itens;
 
 

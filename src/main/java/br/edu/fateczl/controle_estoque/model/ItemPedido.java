@@ -26,8 +26,7 @@ public class ItemPedido {
     @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
 
-
-    public BigDecimal calcularSubtotal() {
-        return precoTotal.multiply(BigDecimal.valueOf(quantidade));
-    }
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido;
 }

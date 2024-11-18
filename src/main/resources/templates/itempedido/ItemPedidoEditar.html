@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Editar Item Pedido')"></head>
+
+<body>
+    <h2>Editar Item Pedido</h2>
+    <main th:replace="itempedido/ItemPedidoFormulario('Cadastrar', '/itens/editar/' + ${itemPedidoDto.id}, true)"></main>
+</body>
+</html>

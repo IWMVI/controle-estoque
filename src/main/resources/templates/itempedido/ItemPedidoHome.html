@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Gerenciar Itens Pedidos')"></head>
+
+<body>
+    <a href="/itens/adicionar">
+        <input type="button" value="Adicionar novo item pedido" class="btn"/>
+    </a>
+
+    <div class="container">
+        <!-- Tabela de funcionários -->
+        <h1>Itens Pedidos Cadastrados</h1>
+        <table th:replace="itempedido/ItemPedidoTabela"></table>
+    </div>
+
+    <!-- Bootstrap Modal e JS próprio para exclusão -->
+    <div th:replace="fragments/modal :: modal('item')"></div>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
