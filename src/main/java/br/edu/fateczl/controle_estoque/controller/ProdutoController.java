@@ -52,7 +52,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/editar/{id}")
-    public ModelAndView exibirFormularioEdicao(@PathVariable Long id, ProdutoDto produtoDto) {
+    public ModelAndView exibirFormularioEdicao(@PathVariable Long id) {
         Produto produtoBuscado = produtoService.produtoId(id);
         if (produtoBuscado == null) {
             return new ModelAndView("redirect:/produtos");
@@ -87,7 +87,7 @@ public class ProdutoController {
         Produto produto = produtoService.produtoId(id);
 
         if (produto != null) {
-            produtoService.deletarProduto(produto.getId());
+            produtoService.deletarProduto(id);
         }
 
         return "redirect:/produtos";
