@@ -162,10 +162,16 @@ p {
     margin-top: 30px; /* Espaço acima da tabela */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para a tabela */
 }
+.table table-striped{
+	    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Remove o espaçamento entre as células */
+    margin-top: 30px; /* Espaço acima da tabela */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para a tabela */
+}
 
 .produto-table th,
 .produto-table td {
-    padding: 12px 15px; /* Espaçamento interno das células */
+    padding: 15px 15px; /* Espaçamento interno das células */
     text-align: left; /* Alinha o texto à esquerda */
     border: 1px solid #DDD; /* Borda das células */
     font-size: 1rem; /* Tamanho da fonte dentro da tabela */
@@ -336,6 +342,32 @@ body {
     background-color: #F7F7F7;
 }*/
 
+
+
+/* Mudar daqui --------------------------------------------------*/
+/*botao para voltar a pagina inicial*/
+.btn_home{
+	    background-color: #28A745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    margin: 5px;
+}
+.btn_gerar{
+	background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    margin: 5px;
+}
 .container {
     width: 90%;
     max-width: 900px;

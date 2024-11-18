@@ -4,16 +4,68 @@
 <head th:replace="fragments/head('Relatório de Produtos')"></head>
 
 <body>
-    <h1>Gerar Relatório de Produtos</h1>
+    <header>
+        <h1>Gerar Relatório de Produtos</h1>
+        <a href="/">
+            <p><button class="btn_home">Voltar ao Início</button></p>
+        </a>
+    </header>
 
     <!-- Formulário para o usuário inserir parâmetros -->
-    <form th:replace="relatorio/RelatorioFormulario"></form>
+    <main>
+        <form th:replace="relatorio/RelatorioFormulario"></form>
+    </main>
 
     <!-- Exibição do Relatório -->
-    <div th:if="${#lists.isEmpty(relatorio)}" class="error">
-        Nenhum produto encontrado para a categoria informada.
-    </div>
+    <section>
+        <div th:if="${#lists.isEmpty(relatorio)}" class="error">
+            Nenhum produto encontrado para a categoria informada.
+        </div>
+    </section>
 
-    <table th:replace="relatorio/RelatorioTabela"></table>
+    <!-- Tabela do Relatório -->
+    <table class="relatorio-table">
+        <table th:replace="relatorio/RelatorioTabela"></table>
+    </table>
+</body>
+
+</html>
+
+
+
+<!-- 
+ <!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Relatório de Produtos')"></head>
+
+<body>
+    <header>
+        <h1>Gerar Relatório de Produtos</h1>
+        <a href="/">
+            <p><button class="btn_home">Voltar ao Início</button></p>
+        </a>
+    </header>
+
+    <!-- Formulário para o usuário inserir parâmetros -->
+    <!--
+    <main>
+        <form th:replace="relatorio/RelatorioFormulario"></form>
+    </main>
+
+    <!-- Exibição do Relatório -->
+   <!--  <section>
+        <div th:if="${#lists.isEmpty(relatorio)}" class="error">
+            Nenhum produto encontrado para a categoria informada.
+        </div>
+    </section>
+
+    <!-- Tabela do Relatório -->
+   <!--  <table class="relatorio-table">
+        <table th:replace="relatorio/RelatorioTabela"></table>
+    </table>
 </body>
 </html>
+-->
+
+

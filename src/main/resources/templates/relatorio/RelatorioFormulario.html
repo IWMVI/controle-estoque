@@ -1,6 +1,6 @@
 <form th:fragment="form" action="/relatorios" method="GET">
     
-    <label for="categoriaId">Categoria:</label>
+    <label for="categoriaId"><big><big>Selecione a Categoria:</big></big></label>
     <select class="form-select" name="categoriaId" required>
         <option value="" disabled>Selecione uma Categoria</option>
         <option th:each="categoria : ${categorias}" 
@@ -9,8 +9,8 @@
                 th:selected="${categoria.id} == ${categoriaId}">
         </option>
     </select>
-
-    <label for="status">Ativo:</label>
+<div align="center">
+   <big><big> <label for="status">Ativo:</label></big></big>
     <select name="status" required>
         <option value="true" th:selected="${status == true}">
             Ativo
@@ -20,5 +20,8 @@
         </option>
     </select>
 
-    <button type="submit">Gerar Relatório</button>
+  <button class="btn_gerar" type="submit">Gerar Relatório</button></p>
+       
+   <!--   <button type="submit">Gerar Relatório</button>-->
+</div>
 </form>

@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/head('Gerenciar Produto')"></head>
+<link rel="stylesheet" type="text/css" href="styles.css">
 
+<head th:replace="fragments/head('Gerenciar Produto')"></head>
+ <table class="produto-table">
 <body>
     <header>
         <h1>Gerenciar Produtos</h1>
-        <a href="/">Voltar à Página Inicial</a>
+        <a href="/">
+          <p><button class="btn_home">Voltar ao Início</button></p>
+        </a>
     </header>
 
     <!-- Formulário para adicionar novo produto -->
     <main th:replace="produto/ProdutoFormulario :: form('Cadastrar', '/produtos/adicionar', false)"></main>
 
     <h2>Produtos Cadastrados</h2>
-    <table th:replace="produto/ProdutoTabela"></table>
+    <table  th:replace="produto/ProdutoTabela" class="produto-table "></table>
 
     <div th:replace="fragments/modal :: modal('produto')"></div>
 
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    </table>
 </body>
 </html>
