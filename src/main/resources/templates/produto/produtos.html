@@ -6,12 +6,7 @@
 <head th:replace="fragments/head('Gerenciar Produto')"></head>
  <table class="produto-table">
 <body>
-    <header>
-        <h1>Gerenciar Produtos</h1>
-        <a href="/">
-          <p><button class="btn_home">Voltar ao Início</button></p>
-        </a>
-    </header>
+    <header th:replace="fragments/header('Gerenciar Produtos')"></header>
 
     <!-- Formulário para adicionar novo produto -->
     <main th:replace="produto/ProdutoFormulario :: form('Cadastrar', '/produtos/adicionar', false)"></main>
