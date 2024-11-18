@@ -50,4 +50,8 @@ public class ProdutoService {
 	public Iterable<Produto> produtosPorCategoria(Long id) {
 		return produtoRepository.findByCategoriaId(id);
 	}
+
+	public List<Produto> apenasProdutosAtivos() {
+		return produtoRepository.findByAtivoTrue();
+	}
 }
