@@ -161,9 +161,17 @@ p {
     border-collapse: collapse; /* Remove o espaçamento entre as células */
     margin-top: 30px; /* Espaço acima da tabela */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para a tabela */
+    
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
 .table table-striped{
-	    width: 100%; /* Largura total da tabela */
+	   width: 100%; /* Largura total da tabela */
     border-collapse: collapse; /* Remove o espaçamento entre as células */
     margin-top: 30px; /* Espaço acima da tabela */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para a tabela */
@@ -386,11 +394,6 @@ h1 {
 
 
     /* Tabela de Pedidos */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
 
 th,
 td {

@@ -17,7 +17,7 @@
     <main th:replace="produto/ProdutoFormulario :: form('Cadastrar', '/produtos/adicionar', false)"></main>
 
     <h2>Produtos Cadastrados</h2>
-    <table  th:replace="produto/ProdutoTabela" class="produto-table "></table>
+    <table class="produto-table " th:replace="produto/ProdutoTabela"></table>
 
     <div th:replace="fragments/modal :: modal('produto')"></div>
 
