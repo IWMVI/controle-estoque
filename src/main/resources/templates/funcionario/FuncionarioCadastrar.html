@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Cadastrar Funcionário')"></head>
+
+<body>
+    <h2>Adicionar Novo Funcionário</h2>
+    <main th:replace="funcionario/FuncionarioFormulario('Cadastrar', '/funcionarios/adicionar', false)"></main>
+</body>
+</html>

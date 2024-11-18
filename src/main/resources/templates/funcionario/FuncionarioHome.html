@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head('Gerenciar Funcionários')"></head>
+
+<body>
+    <!-- Formulário para adicionar novo funcionário -->
+    <a href="/funcionarios/adicionar">
+        <input type="button" value="Adicionar novo funcionário" class="btn"/>
+    </a>
+
+    <div class="container">
+        <!-- Tabela de funcionários -->
+        <h1>Funcionários Cadastrados</h1>
+        <table th:replace="funcionario/FuncionarioTabela"></table>
+    </div>
+
+    <!-- Bootstrap Modal e JS próprio para exclusão -->
+    <div th:replace="fragments/modal :: modal('funcionario')"></div>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<table th:fragment="tabela">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Cargo</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="funcionario : ${funcionarios}">
+            <td th:text="${funcionario.id}"></td>
+            <td th:text="${funcionario.nome}"></td>
+            <td th:text="${funcionario.email}"></td>
+            <td th:text="${funcionario.cargo}"></td>
+            <td th:text="${funcionario.ativo ? 'Ativo' : 'Inativo'}"></td>
+            <td class="action-buttons">
+                <a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">
+                    <i class="fa-solid fa-pen text-primary"></i>
+                </a>
+                <a th:attr="onclick=|deletarRegistro('${funcionario.nome}', '/funcionarios/excluir/${funcionario.id}')|"
+                        type="button" data-bs-toggle="modal" data-bs-target="#modalId">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
