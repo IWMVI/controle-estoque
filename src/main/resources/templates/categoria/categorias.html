@@ -4,12 +4,7 @@
 <head th:replace="fragments/head('Gerenciar Categorias')"></head>
 
 <body>
-    <header>
-        <h1>Página de Categorias</h1>
-        <a href="/" class="button-back">
-            <i class="fas fa-arrow-left"></i> Voltar ao Início
-        </a>
-    </header>
+    <header th:replace="fragments/header('Gerenciar Categorias')"></header>
 
     <!-- Botão para abrir o modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastro">
