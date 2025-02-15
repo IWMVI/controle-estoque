@@ -8,7 +8,7 @@ services:
             MYSQL_ROOT_PASSWORD: P4ssw0rd # Senha do root do MySQL
             MYSQL_DATABASE: controle-estoque # Nome do banco de dados a ser criado
         ports:
-            - "3307:3306" # Mapeando a porta 3307 do host para 3306 do container
+            - "3306:3306"
         volumes:
             - mysql-data:/var/lib/mysql # Persistência de dados
         networks:
